@@ -8,7 +8,7 @@ const MONTHLY_PRICE = 49;
 const ANNUAL_PRICE  = 490;
 const ANNUAL_MONTHLY_EQUIV = (ANNUAL_PRICE / 12).toFixed(0);
 
-const API_BASE = import.meta.env.VITE_API_BASE || "https://api.inntact.co.uk";
+const API_BASE = import.meta.env.VITE_API_BASE || "https://backend.inntact.co.uk";
 
 // ── Shared atoms ──────────────────────────────────────────────────────────────
 
