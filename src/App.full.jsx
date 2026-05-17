@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import {
   Wifi, Bell, Gauge, Activity, Thermometer, Droplet, AlertTriangle, Check,
   ArrowRight, Star, Menu, X, Signal, ChevronRight, LayoutDashboard, Search,
@@ -40,20 +41,23 @@ function GradientText({ children, className = "" }) {
   );
 }
 
-function GlowButton({ children, primary = false, className = "" }) {
+function GlowButton({ children, primary = false, className = "", href }) {
+  const Tag = href ? Link : "button";
+  const tagProps = href ? { to: href } : {};
+
   if (primary) {
     return (
-      <button className={`group relative inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-emerald-400 to-cyan-400 px-6 py-3 text-sm font-semibold text-slate-950 shadow-lg shadow-emerald-500/20 transition-all hover:shadow-emerald-400/40 hover:scale-105 active:scale-95 ${className}`}>
+      <Tag {...tagProps} className={`group relative inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-emerald-400 to-cyan-400 px-6 py-3 text-sm font-semibold text-slate-950 shadow-lg shadow-emerald-500/20 transition-all hover:shadow-emerald-400/40 hover:scale-105 active:scale-95 ${className}`}>
         <span className="absolute inset-0 rounded-full bg-gradient-to-r from-emerald-300 to-cyan-300 opacity-0 blur-xl transition-opacity group-hover:opacity-60" />
         <span className="relative">{children}</span>
         <ArrowRight className="relative h-4 w-4 transition-transform group-hover:translate-x-0.5" />
-      </button>
+      </Tag>
     );
   }
   return (
-    <button className={`inline-flex items-center justify-center gap-2 rounded-full border border-white/10 bg-white/5 px-6 py-3 text-sm font-semibold text-slate-100 backdrop-blur-sm transition hover:border-white/20 hover:bg-white/10 ${className}`}>
+    <Tag {...tagProps} className={`inline-flex items-center justify-center gap-2 rounded-full border border-white/20 bg-white/5 px-6 py-3 text-sm font-medium text-white backdrop-blur-sm transition-all hover:bg-white/10 hover:border-white/30 ${className}`}>
       {children}
-    </button>
+    </Tag>
   );
 }
 
@@ -469,7 +473,7 @@ export default function InntactHomepage() {
           </nav>
           <div className="hidden items-center gap-3 md:flex">
             <a href="#" className="text-sm text-slate-300 transition hover:text-white">Sign in</a>
-            <GlowButton primary className="!py-2 !text-xs">Start Free Trial</GlowButton>
+            <GlowButton primary href="/signup" className="!py-2 !text-xs">Start Free Trial</GlowButton>
           </div>
           <button onClick={() => setMenuOpen((v) => !v)} className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-white/10 bg-white/5 md:hidden" aria-label="Menu">
             {menuOpen ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
@@ -482,7 +486,7 @@ export default function InntactHomepage() {
               <a href="#solution" onClick={() => setMenuOpen(false)}>Solution</a>
               <a href="#pricing" onClick={() => setMenuOpen(false)}>Pricing</a>
               <a href="#reviews" onClick={() => setMenuOpen(false)}>Reviews</a>
-              <div className="pt-2"><GlowButton primary className="w-full">Start Free Trial</GlowButton></div>
+              <div className="pt-2"><GlowButton primary href="/signup" className="w-full">Start Free Trial</GlowButton></div>
             </div>
           </div>
         )}
@@ -503,7 +507,7 @@ export default function InntactHomepage() {
             Inntact monitors your holiday let internet 24/7 so you know about outages, slow speeds, and issues before guests complain.
           </p>
           <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
-            <GlowButton primary>Start Free Trial</GlowButton>
+            <GlowButton primary href="/signup">Start Free Trial</GlowButton>
             <GlowButton>Book Demo</GlowButton>
           </div>
           <div className="mt-6 flex flex-col items-center justify-center gap-3 text-xs text-slate-500 sm:flex-row sm:gap-6">
@@ -631,7 +635,7 @@ export default function InntactHomepage() {
               <h2 className="text-balance text-4xl font-semibold tracking-tight sm:text-6xl">Protect Your Reviews. <GradientText>Protect Your Guests.</GradientText></h2>
               <p className="mx-auto mt-5 max-w-xl text-slate-400">Join 1,200+ holiday let owners keeping their guests — and their 5-star reviews — online.</p>
               <div className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
-                <GlowButton primary>Start Free Trial</GlowButton>
+                <GlowButton primary href="/signup">Start Free Trial</GlowButton>
                 <GlowButton>Book Demo</GlowButton>
               </div>
               <p className="mt-4 text-xs text-slate-500">14-day free trial · No credit card required</p>
