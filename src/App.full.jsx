@@ -26,7 +26,7 @@ const makeSpark = (seed) =>
 
 function Pulse({ color = "bg-emerald-400" }) {
   return (
-    <span className="relative inline-flex h-2 w-2">
+    <span aria-hidden="true" className="relative inline-flex h-2 w-2">
       <span className={`absolute inline-flex h-full w-full rounded-full ${color} opacity-60 animate-ping`} />
       <span className={`relative inline-flex h-2 w-2 rounded-full ${color}`} />
     </span>
@@ -42,8 +42,9 @@ function GradientText({ children, className = "" }) {
 }
 
 function GlowButton({ children, primary = false, className = "", href }) {
-  const Tag = href ? Link : "button";
-  const tagProps = href ? { to: href } : {};
+  const isAnchorOrExternal = href && (href.startsWith("#") || href.startsWith("http") || href.startsWith("mailto:"));
+  const Tag = href ? (isAnchorOrExternal ? "a" : Link) : "button";
+  const tagProps = href ? (isAnchorOrExternal ? { href } : { to: href }) : {};
 
   if (primary) {
     return (
@@ -249,10 +250,12 @@ function PainCard({ icon, title, body, highlight, highlightLabel }) {
         <div className="mb-5 inline-flex h-10 w-10 items-center justify-center rounded-xl border border-rose-500/20 bg-rose-500/10 text-rose-300">{icon}</div>
         <h3 className="text-lg font-semibold tracking-tight text-white">{title}</h3>
         <p className="mt-2 text-sm text-slate-400">{body}</p>
-        <div className="mt-6 flex items-baseline gap-2 border-t border-white/5 pt-4">
-          <span className="text-2xl font-semibold text-white">{highlight}</span>
-          <span className="text-xs text-slate-500">{highlightLabel}</span>
-        </div>
+        {highlight && (
+          <div className="mt-6 flex items-baseline gap-2 border-t border-white/5 pt-4">
+            <span className="text-2xl font-semibold text-white">{highlight}</span>
+            <span className="text-xs text-slate-500">{highlightLabel}</span>
+          </div>
+        )}
       </div>
     </div>
   );
@@ -407,9 +410,9 @@ function PriceCard({ name, price, per, desc, features, cta, highlighted }) {
         {per && <span className="text-sm text-slate-500">{per}</span>}
       </div>
       <p className="mt-3 text-sm text-slate-400">{desc}</p>
-      <button className={`mt-6 w-full rounded-full px-5 py-2.5 text-sm font-semibold transition ${highlighted ? "bg-gradient-to-r from-emerald-400 to-cyan-400 text-slate-950 hover:shadow-lg hover:shadow-emerald-500/30" : "border border-white/10 bg-white/5 text-white hover:border-white/20 hover:bg-white/10"}`}>
+      <Link to="/signup" className={`mt-6 block w-full rounded-full px-5 py-2.5 text-center text-sm font-semibold transition ${highlighted ? "bg-gradient-to-r from-emerald-400 to-cyan-400 text-slate-950 hover:shadow-lg hover:shadow-emerald-500/30" : "border border-white/10 bg-white/5 text-white hover:border-white/20 hover:bg-white/10"}`}>
         {cta}
-      </button>
+      </Link>
       <ul className="mt-7 space-y-2.5">
         {features.map((f) => (
           <li key={f} className="flex items-start gap-2 text-sm text-slate-300">
@@ -422,23 +425,6 @@ function PriceCard({ name, price, per, desc, features, cta, highlighted }) {
   );
 }
 
-function Testimonial({ name, role, avatar, text, gradient }) {
-  return (
-    <div className="relative flex h-full flex-col rounded-2xl border border-white/10 bg-white/5 p-6 transition hover:border-white/20">
-      <div className="mb-3 flex items-center gap-1">
-        {Array.from({ length: 5 }).map((_, i) => <Star key={i} className="h-4 w-4 fill-amber-300 text-amber-300" />)}
-      </div>
-      <p className="flex-1 text-sm leading-relaxed text-slate-200">"{text}"</p>
-      <div className="mt-6 flex items-center gap-3 border-t border-white/5 pt-5">
-        <div className={`flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br ${gradient} text-sm font-semibold text-slate-900`}>{avatar}</div>
-        <div>
-          <div className="text-sm font-semibold text-white">{name}</div>
-          <div className="text-xs text-slate-500">{role}</div>
-        </div>
-      </div>
-    </div>
-  );
-}
 
 export default function InntactHomepage() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -451,14 +437,14 @@ export default function InntactHomepage() {
   }, []);
 
   return (
-    <div className="relative min-h-screen overflow-x-hidden bg-slate-950 font-sans text-slate-100 antialiased">
+    <div className="relative min-h-screen overflow-x-hidden scroll-smooth bg-slate-950 font-sans text-slate-100 antialiased">
       <div className="pointer-events-none fixed inset-0 z-0 opacity-60" style={{ backgroundImage: "radial-gradient(ellipse 80% 60% at 50% -10%, rgba(16,185,129,0.18), transparent 60%), radial-gradient(ellipse 60% 50% at 100% 0%, rgba(34,211,238,0.10), transparent 60%), radial-gradient(ellipse 70% 50% at 0% 30%, rgba(20,184,166,0.08), transparent 60%)" }} />
       <div className="pointer-events-none fixed inset-0 z-0" style={{ opacity: 0.035, backgroundImage: "linear-gradient(rgba(255,255,255,0.6) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.6) 1px, transparent 1px)", backgroundSize: "48px 48px", WebkitMaskImage: "radial-gradient(ellipse 80% 60% at 50% 20%, black, transparent 80%)", maskImage: "radial-gradient(ellipse 80% 60% at 50% 20%, black, transparent 80%)" }} />
 
       {/* NAV */}
       <header className={`fixed inset-x-0 top-0 z-50 transition-all ${scrolled ? "border-b border-white/5 bg-slate-950/70 backdrop-blur-xl" : "bg-transparent"}`}>
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
-          <a href="#" className="flex items-center gap-2">
+          <a href="/" aria-label="Inntact home" className="flex items-center gap-2">
             <div className="relative flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-emerald-400 to-cyan-500 shadow-lg shadow-emerald-500/30">
               <Wifi className="h-4 w-4 text-slate-950" strokeWidth={2.5} />
               <span className="absolute -right-0.5 -top-0.5 h-2 w-2 rounded-full bg-emerald-300 ring-2 ring-slate-950" />
@@ -469,11 +455,10 @@ export default function InntactHomepage() {
             <a href="#features" className="transition hover:text-white">Features</a>
             <a href="#solution" className="transition hover:text-white">Solution</a>
             <a href="#pricing" className="transition hover:text-white">Pricing</a>
-            <a href="#reviews" className="transition hover:text-white">Reviews</a>
           </nav>
           <div className="hidden items-center gap-3 md:flex">
-            <a href="#" className="text-sm text-slate-300 transition hover:text-white">Sign in</a>
-            <GlowButton primary href="/signup" className="!py-2 !text-xs">Start Free Trial</GlowButton>
+            <a href="https://dashboard.inntact.co.uk/" className="text-sm text-slate-300 transition hover:text-white">Sign in</a>
+            <GlowButton primary href="/signup" className="!py-2 !text-xs">Get Started</GlowButton>
           </div>
           <button onClick={() => setMenuOpen((v) => !v)} className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-white/10 bg-white/5 md:hidden" aria-label="Menu">
             {menuOpen ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
@@ -485,8 +470,7 @@ export default function InntactHomepage() {
               <a href="#features" onClick={() => setMenuOpen(false)}>Features</a>
               <a href="#solution" onClick={() => setMenuOpen(false)}>Solution</a>
               <a href="#pricing" onClick={() => setMenuOpen(false)}>Pricing</a>
-              <a href="#reviews" onClick={() => setMenuOpen(false)}>Reviews</a>
-              <div className="pt-2"><GlowButton primary href="/signup" className="w-full">Start Free Trial</GlowButton></div>
+              <div className="pt-2"><GlowButton primary href="/signup" className="w-full">Get Started</GlowButton></div>
             </div>
           </div>
         )}
@@ -504,26 +488,20 @@ export default function InntactHomepage() {
             Prevent Guest WiFi Complaints <GradientText>Before They Happen</GradientText>
           </h1>
           <p className="mx-auto mt-6 max-w-2xl text-balance text-lg text-slate-400 sm:text-xl">
-            Inntact monitors your holiday let internet 24/7 so you know about outages, slow speeds, and issues before guests complain.
+            Inntact monitors your holiday let's WiFi 24/7 so you know about outages, slow speeds, and issues before guests complain.
           </p>
           <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
-            <GlowButton primary href="/signup">Start Free Trial</GlowButton>
-            <GlowButton>Book Demo</GlowButton>
+            <GlowButton primary href="/signup">Get Started</GlowButton>
           </div>
           <div className="mt-6 flex flex-col items-center justify-center gap-3 text-xs text-slate-500 sm:flex-row sm:gap-6">
-            <span className="inline-flex items-center gap-1.5"><Check className="h-3.5 w-3.5 text-emerald-400" />14-day free trial</span>
+            <span className="inline-flex items-center gap-1.5"><Check className="h-3.5 w-3.5 text-emerald-400" />30-day money-back guarantee</span>
             <span className="inline-flex items-center gap-1.5"><Check className="h-3.5 w-3.5 text-emerald-400" />No credit card required</span>
-            <span className="inline-flex items-center gap-1.5"><Check className="h-3.5 w-3.5 text-emerald-400" />Setup in under 5 minutes</span>
+            <span className="inline-flex items-center gap-1.5"><Check className="h-3.5 w-3.5 text-emerald-400" />Setup in about 10 minutes</span>
           </div>
         </div>
-        <div className="relative mx-auto mt-20 max-w-6xl px-4"><LaptopMockup /></div>
+        <div className="relative mx-auto mt-20 max-w-6xl px-4" role="img" aria-label="Preview of the Inntact owner dashboard"><LaptopMockup /></div>
         <div className="mx-auto mt-16 max-w-5xl px-6">
-          <p className="mb-6 text-center text-xs uppercase text-slate-500" style={{ letterSpacing: "0.2em" }}>Trusted by 1,200+ luxury holiday let owners across the UK</p>
-          <div className="grid grid-cols-2 items-center gap-8 opacity-60 sm:grid-cols-5">
-            {["COTTAGES & CO", "SEABREEZE LETS", "HIGHLAND STAYS", "OAK & STONE", "LAKELAND LODGES"].map((n) => (
-              <div key={n} className="text-center text-xs font-semibold text-slate-400" style={{ letterSpacing: "0.15em" }}>{n}</div>
-            ))}
-          </div>
+          <p className="text-center text-xs uppercase text-slate-500" style={{ letterSpacing: "0.2em" }}>Built for UK holiday-let owners</p>
         </div>
       </section>
 
@@ -535,9 +513,9 @@ export default function InntactHomepage() {
           <p className="mx-auto mt-4 max-w-2xl text-slate-400">One bad broadband week can undo years of 5-star reviews. And by the time you hear about it, it's usually in a review.</p>
         </div>
         <div className="mx-auto mt-16 grid max-w-6xl gap-4 sm:grid-cols-3">
-          <PainCard icon={<AlertTriangle className="h-5 w-5" />} title="Guests complain when WiFi fails" body="Remote working guests expect reliable speeds. A dropout on a Tuesday morning can end a stay — and a review." highlight="1 in 3" highlightLabel="bookings mention WiFi" />
-          <PainCard icon={<Clock className="h-5 w-5" />} title="Owners find out too late" body="You're managing a property from miles away. By the time a guest messages you, the damage is already done." highlight="48 hrs" highlightLabel="avg. delay to detect issues" />
-          <PainCard icon={<Star className="h-5 w-5" />} title="Bad reviews cost future bookings" body="A single 3-star review can drop your Airbnb ranking and cost thousands in lost bookings over a season." highlight="-22%" highlightLabel="bookings after a 3★ review" />
+          <PainCard icon={<AlertTriangle className="h-5 w-5" />} title="Guests complain when WiFi fails" body="Remote working guests expect reliable speeds. A dropout on a Tuesday morning can end a stay — and a review." />
+          <PainCard icon={<Clock className="h-5 w-5" />} title="Owners find out too late" body="You're managing a property from miles away. By the time a guest messages you, the damage is already done." />
+          <PainCard icon={<Star className="h-5 w-5" />} title="Bad reviews cost future bookings" body="A single 3-star review can drop your Airbnb ranking and cost thousands in lost bookings over a season." />
         </div>
       </section>
 
@@ -546,12 +524,12 @@ export default function InntactHomepage() {
         <div className="mx-auto max-w-6xl text-center">
           <SectionEyebrow>The solution</SectionEyebrow>
           <SectionTitle>Know Issues <GradientText>Before Guests Do</GradientText></SectionTitle>
-          <p className="mx-auto mt-4 max-w-2xl text-slate-400">Inntact watches your internet around the clock and tells you the moment something's off — so you can fix it before a guest even notices.</p>
+          <p className="mx-auto mt-4 max-w-2xl text-slate-400">Inntact watches your WiFi around the clock and tells you the moment something's off — so you can fix it before a guest even notices.</p>
         </div>
         <div className="mx-auto mt-16 grid max-w-6xl gap-5 lg:grid-cols-3">
-          <FeatureBlock icon={<Activity className="h-5 w-5" />} tag="Monitoring" title="24/7 Broadband Monitoring" body="Track uptime, outages, speed drops and latency spikes across every property — down to the minute." visual={<MonitoringVisual />} />
-          <FeatureBlock icon={<Bell className="h-5 w-5" />} tag="Alerts" title="Instant Alerts" body="Get notified immediately via SMS, email or app when problems happen. Resolve issues before guests notice." visual={<AlertVisual />} />
-          <FeatureBlock icon={<Gauge className="h-5 w-5" />} tag="Dashboard" title="Owner Dashboard" body="A beautiful dashboard showing real-time status, 90-day speed history and uptime percentage per property." visual={<DashboardVisual />} />
+          <FeatureBlock icon={<Activity className="h-5 w-5" />} tag="Monitoring" title="24/7 Broadband Monitoring" body="Track uptime, outages, speed drops and slow connections across every property — down to the minute." visual={<MonitoringVisual />} />
+          <FeatureBlock icon={<Bell className="h-5 w-5" />} tag="Alerts" title="Instant Alerts" body="Get notified immediately by email the moment problems are detected. Resolve issues before guests notice." visual={<AlertVisual />} />
+          <FeatureBlock icon={<Gauge className="h-5 w-5" />} tag="Dashboard" title="Owner Dashboard" body="A clear dashboard showing real-time status, 30-day speed history and uptime percentage per property." visual={<DashboardVisual />} />
         </div>
       </section>
 
@@ -559,7 +537,7 @@ export default function InntactHomepage() {
       <section id="solution" className="relative z-10 px-6 pt-40">
         <div className="mx-auto max-w-6xl text-center">
           <SectionEyebrow>Dashboard</SectionEyebrow>
-          <SectionTitle>Your property's internet health <GradientText>at a glance</GradientText></SectionTitle>
+          <SectionTitle>Your property's WiFi health <GradientText>at a glance</GradientText></SectionTitle>
         </div>
         <div className="relative mx-auto mt-16 max-w-6xl">
           <div className="pointer-events-none absolute inset-0 -z-10 mx-auto h-full w-4/5 rounded-full bg-gradient-to-r from-emerald-500/20 via-teal-500/20 to-cyan-500/20 blur-3xl" />
@@ -585,8 +563,7 @@ export default function InntactHomepage() {
                 <h2 className="text-balance text-4xl font-semibold tracking-tight sm:text-5xl">Total peace of mind <GradientText>with smart sensors</GradientText></h2>
                 <p className="mt-4 max-w-xl text-slate-400">Add smart sensors for total property peace of mind. Catch leaks, freezes and humidity issues before they turn into five-figure repair bills.</p>
                 <div className="mt-8 flex flex-wrap gap-3">
-                  <GlowButton primary>Add sensors</GlowButton>
-                  <GlowButton>See how it works</GlowButton>
+                  <GlowButton href="#features">See how it works</GlowButton>
                 </div>
               </div>
               <div className="grid gap-3 sm:grid-cols-3 lg:grid-cols-1 xl:grid-cols-3">
@@ -603,28 +580,15 @@ export default function InntactHomepage() {
       <section id="pricing" className="relative z-10 px-6 pt-40">
         <div className="mx-auto max-w-6xl text-center">
           <SectionEyebrow>Pricing</SectionEyebrow>
-          <SectionTitle>Simple pricing, <GradientText>per property</GradientText></SectionTitle>
-          <p className="mx-auto mt-4 max-w-xl text-slate-400">Start with a 14-day free trial. Cancel any time. No setup fees.</p>
+          <SectionTitle>Simple pricing, <GradientText>no tiers</GradientText></SectionTitle>
+          <p className="mx-auto mt-4 max-w-xl text-slate-400">30-day money-back guarantee. Cancel any time. No setup fees.</p>
         </div>
-        <div className="mx-auto mt-14 grid max-w-6xl gap-5 lg:grid-cols-3">
-          <PriceCard name="Starter" price="£19" per="/ month per property" desc="Everything you need to monitor one holiday let." features={["24/7 broadband monitoring", "Email alerts", "90-day speed history", "Owner dashboard", "1 property"]} cta="Start free trial" />
-          <PriceCard name="Pro" price="£29" per="/ month per property" desc="For serious hosts who want full peace of mind." features={["Everything in Starter", "SMS + app push alerts", "Unlimited properties", "Smart sensor support", "Priority support"]} cta="Start free trial" highlighted />
-          <PriceCard name="Enterprise" price="Custom" per="" desc="For agencies managing 20+ properties." features={["Everything in Pro", "Dedicated account manager", "API &amp; PMS integrations", "Custom SLAs", "White-label portals"]} cta="Contact sales" />
+        <div className="mx-auto mt-14 grid max-w-3xl gap-5 sm:grid-cols-2">
+          <PriceCard name="Monthly" price="£49" per="/ month" desc="Full monitoring, cancel any time." features={["24/7 broadband monitoring", "Email alerts for outages &amp; issues", "Speed history &amp; uptime reports", "Owner dashboard", "Smart sensor support", "No setup fee"]} cta="Get started" />
+          <PriceCard name="Annual" price="£490" per="/ year" desc="Two months free. Pay once, monitor all year." features={["Everything in Monthly", "<strong>Save £98</strong> vs monthly", "Priority email support", "Early access to new features"]} cta="Get started" highlighted />
         </div>
       </section>
 
-      {/* TESTIMONIALS */}
-      <section id="reviews" className="relative z-10 px-6 pt-40">
-        <div className="mx-auto max-w-6xl text-center">
-          <SectionEyebrow>Loved by hosts</SectionEyebrow>
-          <SectionTitle>Stories from <GradientText>our owners</GradientText></SectionTitle>
-        </div>
-        <div className="mx-auto mt-14 grid max-w-6xl gap-5 lg:grid-cols-3">
-          <Testimonial name="Charlotte Whitman" role="Owner · Cotswolds" avatar="CW" gradient="from-rose-300 to-amber-300" text="I used to find out about WiFi outages from angry reviews. Since Inntact, I've fixed four issues before guests even noticed. It's quietly the best £29 I spend each month." />
-          <Testimonial name="James Okafor" role="Host · Cornwall (3 properties)" avatar="JO" gradient="from-emerald-300 to-cyan-300" text="The dashboard is gorgeous and the SMS alerts are spot on. One leak alert alone paid for two years of subscription. This is what luxury hosting should feel like." />
-          <Testimonial name="Priya Sharma" role="Manager · Lakeland Lodges" avatar="PS" gradient="from-violet-300 to-indigo-300" text="We manage 14 lets and used to get complaints every week. Since rolling out Inntact, our review scores went from 4.6 to 4.9. Our cleaners love it too." />
-        </div>
-      </section>
 
       {/* FINAL CTA */}
       <section className="relative z-10 px-6 pt-40">
@@ -633,12 +597,11 @@ export default function InntactHomepage() {
             <div className="pointer-events-none absolute inset-0" style={{ backgroundImage: "radial-gradient(circle at 50% 0%, rgba(16,185,129,0.25), transparent 50%), radial-gradient(circle at 50% 100%, rgba(34,211,238,0.2), transparent 50%)" }} />
             <div className="relative">
               <h2 className="text-balance text-4xl font-semibold tracking-tight sm:text-6xl">Protect Your Reviews. <GradientText>Protect Your Guests.</GradientText></h2>
-              <p className="mx-auto mt-5 max-w-xl text-slate-400">Join 1,200+ holiday let owners keeping their guests — and their 5-star reviews — online.</p>
+              <p className="mx-auto mt-5 max-w-xl text-slate-400">Know about problems before your guests do. Protect your reviews, and your reputation.</p>
               <div className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
-                <GlowButton primary href="/signup">Start Free Trial</GlowButton>
-                <GlowButton>Book Demo</GlowButton>
+                <GlowButton primary href="/signup">Get Started</GlowButton>
               </div>
-              <p className="mt-4 text-xs text-slate-500">14-day free trial · No credit card required</p>
+              <p className="mt-4 text-xs text-slate-500">30-day money-back guarantee · No credit card required</p>
             </div>
           </div>
         </div>
