@@ -2,27 +2,12 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import {
   Wifi, Bell, Gauge, Activity, Thermometer, Droplet, AlertTriangle, Check,
-  ArrowRight, Star, Menu, X, Signal, ChevronRight, LayoutDashboard, Search,
-  Home, BarChart3, Settings, Sparkles, TrendingUp, Clock, Globe,
+  ArrowRight, Star, Menu, X, Signal, ChevronRight, Sparkles, TrendingUp, Clock, Globe,
 } from "lucide-react";
 import {
-  AreaChart, Area, XAxis, YAxis, ResponsiveContainer, Tooltip, LineChart, Line,
+  AreaChart, Area, ResponsiveContainer,
 } from "recharts";
 
-const speedData = Array.from({ length: 48 }, (_, i) => {
-  const base = 285 + Math.sin(i / 3.2) * 28 + Math.cos(i / 6) * 10;
-  return {
-    t: i,
-    down: Math.max(150, Math.round(base + (i === 19 ? -110 : 0))),
-    up: Math.round(base / 9 + 4 + Math.sin(i / 2) * 2),
-  };
-});
-
-const makeSpark = (seed) =>
-  Array.from({ length: 18 }, (_, i) => ({
-    x: i,
-    y: 50 + Math.sin(i / 2 + seed) * 18 + Math.cos(i / 1.3 + seed) * 6,
-  }));
 
 function Pulse({ color = "bg-emerald-400" }) {
   return (
@@ -62,149 +47,6 @@ function GlowButton({ children, primary = false, className = "", href }) {
   );
 }
 
-function DashboardMockup() {
-  return (
-    <div className="flex h-full w-full bg-slate-950 text-slate-100">
-      <aside className="hidden w-40 shrink-0 flex-col justify-between border-r border-white/5 bg-slate-950/80 px-3 py-3 sm:flex">
-        <div>
-          <div className="mb-4 flex items-center gap-2 px-1">
-            <div className="flex h-6 w-6 items-center justify-center rounded-md bg-gradient-to-br from-emerald-400 to-cyan-500">
-              <Wifi className="h-3.5 w-3.5 text-slate-950" />
-            </div>
-            <span className="text-xs font-semibold tracking-tight">Inntact</span>
-          </div>
-          <nav className="space-y-0.5 text-[10px]">
-            <NavItem icon={<LayoutDashboard className="h-3 w-3" />} label="Overview" active />
-            <NavItem icon={<Home className="h-3 w-3" />} label="Properties" />
-            <NavItem icon={<AlertTriangle className="h-3 w-3" />} label="Alerts" badge="2" />
-            <NavItem icon={<Thermometer className="h-3 w-3" />} label="Sensors" />
-            <NavItem icon={<BarChart3 className="h-3 w-3" />} label="Reports" />
-            <NavItem icon={<Settings className="h-3 w-3" />} label="Settings" />
-          </nav>
-        </div>
-        <div className="rounded-lg border border-white/5 bg-white/5 p-2">
-          <div className="mb-1 text-[9px] text-slate-500">Plan</div>
-          <div className="text-[10px] font-medium">Pro · 3 properties</div>
-        </div>
-      </aside>
-      <main className="flex min-w-0 flex-1 flex-col">
-        <div className="flex items-center justify-between border-b border-white/5 px-3 py-2">
-          <div className="flex items-center gap-2 rounded-md bg-white/5 px-2 py-1 text-[10px] text-slate-400">
-            <Search className="h-3 w-3" /> Search properties…
-          </div>
-          <div className="flex items-center gap-2">
-            <div className="flex items-center gap-1 rounded-full border border-emerald-500/20 bg-emerald-500/10 px-2 py-0.5 text-[9px] text-emerald-300">
-              <Pulse />
-              All systems operational
-            </div>
-            <div className="h-5 w-5 rounded-full bg-gradient-to-br from-amber-300 to-rose-400" />
-          </div>
-        </div>
-        <div className="flex-1 overflow-hidden p-3">
-          <div className="mb-2 flex items-end justify-between">
-            <div>
-              <div className="text-[10px] text-slate-500">Friday, 17 April</div>
-              <div className="text-sm font-semibold tracking-tight">Good morning, Eddie</div>
-            </div>
-            <div className="text-[9px] text-slate-500">Last synced · 12s ago</div>
-          </div>
-          <div className="mb-2 grid grid-cols-4 gap-2">
-            <StatCard label="Uptime" value="99.98%" trend="+0.04" accent="emerald" />
-            <StatCard label="Avg speed" value="287 Mbps" trend="+12" accent="cyan" />
-            <StatCard label="Latency" value="12ms" trend="-3" accent="teal" />
-            <StatCard label="Sensors" value="4 / 4" trend="OK" accent="emerald" />
-          </div>
-          <div className="mb-2 rounded-lg border border-white/5 bg-white/5 p-2">
-            <div className="mb-1 flex items-center justify-between">
-              <div>
-                <div className="text-[10px] font-medium">Download speed · 24h</div>
-                <div className="text-[9px] text-slate-500">Sea View Cottage · Cornwall</div>
-              </div>
-              <div className="flex items-center gap-1 text-[9px]">
-                <span className="flex items-center gap-1 text-emerald-300"><span className="h-1.5 w-1.5 rounded-full bg-emerald-400" /> Down</span>
-                <span className="flex items-center gap-1 text-cyan-300"><span className="h-1.5 w-1.5 rounded-full bg-cyan-400" /> Up</span>
-              </div>
-            </div>
-            <div className="h-20">
-              <ResponsiveContainer width="100%" height="100%">
-                <AreaChart data={speedData} margin={{ top: 2, right: 0, bottom: 0, left: 0 }}>
-                  <defs>
-                    <linearGradient id="gDown" x1="0" y1="0" x2="0" y2="1">
-                      <stop offset="0%" stopColor="#34d399" stopOpacity={0.55} />
-                      <stop offset="100%" stopColor="#34d399" stopOpacity={0} />
-                    </linearGradient>
-                    <linearGradient id="gUp" x1="0" y1="0" x2="0" y2="1">
-                      <stop offset="0%" stopColor="#22d3ee" stopOpacity={0.4} />
-                      <stop offset="100%" stopColor="#22d3ee" stopOpacity={0} />
-                    </linearGradient>
-                  </defs>
-                  <XAxis dataKey="t" hide />
-                  <YAxis hide domain={[0, 380]} />
-                  <Tooltip contentStyle={{ background: "rgba(2,6,23,0.9)", border: "1px solid rgba(255,255,255,0.08)", borderRadius: 8, fontSize: 10, color: "#e2e8f0" }} labelFormatter={() => ""} />
-                  <Area type="monotone" dataKey="down" stroke="#34d399" strokeWidth={1.5} fill="url(#gDown)" />
-                  <Area type="monotone" dataKey="up" stroke="#22d3ee" strokeWidth={1.2} fill="url(#gUp)" />
-                </AreaChart>
-              </ResponsiveContainer>
-            </div>
-          </div>
-          <div className="rounded-lg border border-white/5 bg-white/5">
-            <div className="flex items-center justify-between border-b border-white/5 px-2 py-1.5">
-              <div className="text-[10px] font-medium">Properties</div>
-              <div className="text-[9px] text-slate-500">3 active</div>
-            </div>
-            <PropRow name="Sea View Cottage" loc="Cornwall" status="Healthy" speed="312 Mbps" color="emerald" spark={makeSpark(1)} />
-            <PropRow name="Lakeside Lodge" loc="Lake District" status="Healthy" speed="268 Mbps" color="emerald" spark={makeSpark(3)} />
-            <PropRow name="The Oast House" loc="Kent" status="Slow upload" speed="94 Mbps" color="amber" spark={makeSpark(7)} />
-          </div>
-        </div>
-      </main>
-    </div>
-  );
-}
-
-function NavItem({ icon, label, active, badge }) {
-  return (
-    <div className={`flex items-center justify-between rounded-md px-2 py-1.5 ${active ? "bg-white/10 text-slate-100" : "text-slate-400 hover:text-slate-200"}`}>
-      <div className="flex items-center gap-1.5">{icon}<span>{label}</span></div>
-      {badge && <span className="rounded-full bg-rose-500/20 px-1.5 text-[8px] text-rose-300">{badge}</span>}
-    </div>
-  );
-}
-
-function StatCard({ label, value, trend, accent }) {
-  const accentMap = { emerald: "text-emerald-300", cyan: "text-cyan-300", teal: "text-teal-300" };
-  return (
-    <div className="rounded-lg border border-white/5 bg-white/5 p-2">
-      <div className="text-[9px] uppercase tracking-wider text-slate-500">{label}</div>
-      <div className="mt-0.5 text-[13px] font-semibold tracking-tight">{value}</div>
-      <div className={`mt-0.5 text-[9px] ${accentMap[accent] || "text-emerald-300"}`}>{trend}</div>
-    </div>
-  );
-}
-
-function PropRow({ name, loc, status, speed, color, spark }) {
-  const dot = color === "emerald" ? "bg-emerald-400" : "bg-amber-400";
-  const text = color === "emerald" ? "text-emerald-300" : "text-amber-300";
-  const stroke = color === "emerald" ? "#34d399" : "#fbbf24";
-  return (
-    <div className="flex items-center gap-2 border-b border-white/5 px-2 py-1.5 last:border-b-0">
-      <div className={`h-1.5 w-1.5 rounded-full ${dot}`} />
-      <div className="min-w-0 flex-1">
-        <div className="truncate text-[10px] font-medium">{name}</div>
-        <div className="truncate text-[9px] text-slate-500">{loc}</div>
-      </div>
-      <div className="h-6 w-16">
-        <ResponsiveContainer width="100%" height="100%">
-          <LineChart data={spark}>
-            <Line type="monotone" dataKey="y" stroke={stroke} strokeWidth={1.2} dot={false} />
-          </LineChart>
-        </ResponsiveContainer>
-      </div>
-      <div className="w-16 text-right text-[9px] text-slate-300">{speed}</div>
-      <div className={`w-20 text-right text-[9px] ${text}`}>{status}</div>
-    </div>
-  );
-}
 
 function LaptopMockup() {
   return (
@@ -214,7 +56,11 @@ function LaptopMockup() {
         <div className="absolute left-1/2 top-1 h-1 w-10 -translate-x-1/2 rounded-full bg-slate-800" />
         <div className="overflow-hidden rounded-xl border border-white/5">
           <div className="w-full" style={{ aspectRatio: "16 / 10" }}>
-            <DashboardMockup />
+            <img
+              src="/dashboard-owner.png"
+              alt="Inntact owner dashboard showing guests protected status, uptime stats and live connection data"
+              className="h-full w-full object-cover object-top"
+            />
           </div>
         </div>
       </div>
@@ -543,12 +389,58 @@ export default function InntactHomepage() {
           <div className="pointer-events-none absolute inset-0 -z-10 mx-auto h-full w-4/5 rounded-full bg-gradient-to-r from-emerald-500/20 via-teal-500/20 to-cyan-500/20 blur-3xl" />
           <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-slate-900/60 p-2 shadow-2xl shadow-emerald-900/20 backdrop-blur-sm">
             <div className="overflow-hidden rounded-xl border border-white/5" style={{ aspectRatio: "16 / 9.5" }}>
-              <DashboardMockup />
+              <img
+                src="/dashboard-owner.png"
+                alt="Inntact owner dashboard showing guests protected status, 99.8% uptime, live broadband and sensor readings"
+                className="h-full w-full object-cover object-top"
+              />
             </div>
           </div>
-          <FloatingChip className="left-2 top-10 hidden md:flex" color="emerald" icon={<Check className="h-3 w-3" />} title="Uptime 99.98%" sub="last 30 days" />
-          <FloatingChip className="right-2 top-24 hidden md:flex" color="amber" icon={<AlertTriangle className="h-3 w-3" />} title="Slow upload detected" sub="Oast House · 2m ago" />
-          <FloatingChip className="-bottom-4 left-1/4 hidden md:flex" color="cyan" icon={<Signal className="h-3 w-3" />} title="Speed 312 Mbps" sub="Sea View Cottage" />
+          <FloatingChip className="left-2 top-10 hidden md:flex" color="emerald" icon={<Check className="h-3 w-3" />} title="Guests Protected" sub="All systems normal" />
+          <FloatingChip className="right-2 top-24 hidden md:flex" color="amber" icon={<AlertTriangle className="h-3 w-3" />} title="4G Failover: Standby" sub="Ready to activate" />
+          <FloatingChip className="-bottom-4 left-1/4 hidden md:flex" color="cyan" icon={<Signal className="h-3 w-3" />} title="99.8% Uptime" sub="Last 30 days" />
+        </div>
+      </section>
+
+      {/* GUEST PAGE */}
+      <section className="relative z-10 px-6 pt-40">
+        <div className="mx-auto max-w-6xl">
+          <div className="relative grid gap-16 lg:grid-cols-2 lg:items-center">
+            <div>
+              <SectionEyebrow>For your guests</SectionEyebrow>
+              <h2 className="text-balance text-4xl font-semibold tracking-tight text-slate-50 sm:text-5xl">
+                What guests see <GradientText>when they check in</GradientText>
+              </h2>
+              <p className="mt-5 max-w-xl text-slate-400">Every property gets a dedicated WiFi status page. Guests open it and instantly see their connection is live, monitored, and protected — before they even think to ask.</p>
+              <ul className="mt-8 space-y-4">
+                {[
+                  { title: "Live connection status", body: "A clear green screen the moment WiFi is working — reassurance before the bags are unpacked." },
+                  { title: "Current speeds", body: "Guests can see their download and upload speeds in real time, so they know what to expect." },
+                  { title: "4G backup protection", body: "If broadband fails, the property automatically switches to 4G backup — and guests stay online." },
+                ].map((item) => (
+                  <li key={item.title} className="flex gap-4">
+                    <span className="mt-1 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-emerald-500/20">
+                      <Check className="h-3 w-3 text-emerald-400" />
+                    </span>
+                    <div>
+                      <div className="text-sm font-semibold text-white">{item.title}</div>
+                      <div className="text-sm text-slate-400">{item.body}</div>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="relative mx-auto w-full max-w-sm">
+              <div className="pointer-events-none absolute inset-0 -z-10 rounded-full bg-gradient-to-b from-emerald-500/20 to-cyan-500/10 blur-3xl" />
+              <div className="overflow-hidden rounded-3xl border border-white/10 shadow-2xl shadow-emerald-900/20">
+                <img
+                  src="/dashboard-guest.png"
+                  alt="Guest WiFi status page showing WiFi is Working with live speed readings"
+                  className="w-full"
+                />
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
