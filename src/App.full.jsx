@@ -327,22 +327,22 @@ export default function InntactHomepage() {
         <div className="mx-auto max-w-5xl text-center">
           <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/10 px-3 py-1 text-xs text-slate-300 backdrop-blur-sm">
             <Sparkles className="h-3.5 w-3.5 text-emerald-300" />
-            Now with smart temperature, leak &amp; humidity sensors
+            Includes smart leak, damp &amp; temperature sensors
             <ChevronRight className="h-3.5 w-3.5 text-slate-500" />
           </div>
           <h1 className="mx-auto max-w-4xl text-balance text-5xl font-semibold tracking-tight text-white sm:text-6xl md:text-7xl" style={{ lineHeight: 1.05 }}>
-            Prevent Guest WiFi Complaints <GradientText>Before They Happen</GradientText>
+            Hear about WiFi problems <GradientText>before your guests do</GradientText>
           </h1>
           <p className="mx-auto mt-6 max-w-2xl text-balance text-lg text-slate-400 sm:text-xl">
-            Inntact monitors your holiday let's WiFi 24/7 so you know about outages, slow speeds, and issues before guests complain.
+            Inntact watches over your holiday let's WiFi around the clock. If it drops, we automatically restart your router — often fixing it before anyone notices — and email you what happened.
           </p>
           <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
             <GlowButton primary href="/signup">Get Started</GlowButton>
           </div>
           <div className="mt-6 flex flex-col items-center justify-center gap-3 text-xs text-slate-500 sm:flex-row sm:gap-6">
+            <span className="inline-flex items-center gap-1.5"><Check className="h-3.5 w-3.5 text-emerald-400" />Most properties live in about 10 minutes</span>
             <span className="inline-flex items-center gap-1.5"><Check className="h-3.5 w-3.5 text-emerald-400" />30-day money-back guarantee</span>
-            <span className="inline-flex items-center gap-1.5"><Check className="h-3.5 w-3.5 text-emerald-400" />No credit card required</span>
-            <span className="inline-flex items-center gap-1.5"><Check className="h-3.5 w-3.5 text-emerald-400" />Setup in about 10 minutes</span>
+            <span className="inline-flex items-center gap-1.5"><Check className="h-3.5 w-3.5 text-emerald-400" />Secure payment by Stripe</span>
           </div>
         </div>
         <div className="relative mx-auto mt-20 max-w-6xl px-4" role="img" aria-label="Preview of the Inntact owner dashboard"><LaptopMockup /></div>
@@ -355,13 +355,13 @@ export default function InntactHomepage() {
       <section className="relative z-10 px-6 pt-40">
         <div className="mx-auto max-w-6xl text-center">
           <SectionEyebrow>The problem</SectionEyebrow>
-          <SectionTitle>WiFi Problems <GradientText>Damage Reviews</GradientText></SectionTitle>
-          <p className="mx-auto mt-4 max-w-2xl text-slate-400">One bad broadband week can undo years of 5-star reviews. And by the time you hear about it, it's usually in a review.</p>
+          <SectionTitle>WiFi trouble is best <GradientText>caught early</GradientText></SectionTitle>
+          <p className="mx-auto mt-4 max-w-2xl text-slate-400">When the WiFi goes down in a holiday let, the guest is the first to notice and you're usually the last to know — often only when it turns up in a review. Inntact closes that gap.</p>
         </div>
         <div className="mx-auto mt-16 grid max-w-6xl gap-4 sm:grid-cols-3">
-          <PainCard icon={<AlertTriangle className="h-5 w-5" />} title="Guests complain when WiFi fails" body="Remote working guests expect reliable speeds. A dropout on a Tuesday morning can end a stay — and a review." />
-          <PainCard icon={<Clock className="h-5 w-5" />} title="Owners find out too late" body="You're managing a property from miles away. By the time a guest messages you, the damage is already done." />
-          <PainCard icon={<Star className="h-5 w-5" />} title="Bad reviews cost future bookings" body="A single 3-star review can drop your Airbnb ranking and cost thousands in lost bookings over a season." />
+          <PainCard icon={<AlertTriangle className="h-5 w-5" />} title="Guests notice a dropout first" body="Working guests rely on the WiFi. When it drops, they feel it straight away — and you'd usually rather hear it from us than from them." />
+          <PainCard icon={<Clock className="h-5 w-5" />} title="You're often miles away" body="Managing a property remotely, it's hard to know what's happening on the ground. Inntact keeps watch so you don't have to guess." />
+          <PainCard icon={<Star className="h-5 w-5" />} title="It's your reviews on the line" body="A spell of bad WiFi is the kind of thing that ends up in a review. Catching it early keeps small problems from becoming public ones." />
         </div>
       </section>
 
@@ -369,13 +369,34 @@ export default function InntactHomepage() {
       <section id="features" className="relative z-10 px-6 pt-40">
         <div className="mx-auto max-w-6xl text-center">
           <SectionEyebrow>The solution</SectionEyebrow>
-          <SectionTitle>Know Issues <GradientText>Before Guests Do</GradientText></SectionTitle>
-          <p className="mx-auto mt-4 max-w-2xl text-slate-400">Inntact watches your WiFi around the clock and tells you the moment something's off — so you can fix it before a guest even notices.</p>
+          <SectionTitle>Most problems, sorted <GradientText>before you'd hear about them</GradientText></SectionTitle>
+          <p className="mx-auto mt-4 max-w-2xl text-slate-400">Inntact watches your WiFi around the clock and steps in the moment something's off — so most issues are fixed before a guest ever picks up the phone.</p>
         </div>
         <div className="mx-auto mt-16 grid max-w-6xl gap-5 lg:grid-cols-3">
-          <FeatureBlock icon={<Activity className="h-5 w-5" />} tag="Monitoring" title="24/7 Broadband Monitoring" body="Track uptime, outages, speed drops and slow connections across every property — down to the minute." visual={<MonitoringVisual />} />
-          <FeatureBlock icon={<Bell className="h-5 w-5" />} tag="Alerts" title="Instant Alerts" body="Get notified immediately by email the moment problems are detected. Resolve issues before guests notice." visual={<AlertVisual />} />
-          <FeatureBlock icon={<Gauge className="h-5 w-5" />} tag="Dashboard" title="Owner Dashboard" body="A clear dashboard showing real-time status, 30-day speed history and uptime percentage per property." visual={<DashboardVisual />} />
+          <FeatureBlock icon={<Activity className="h-5 w-5" />} tag="Monitoring" title="24/7 WiFi monitoring" body="We watch your property's connection around the clock, so a drop never goes unnoticed. As soon as a real problem is confirmed, you get a plain email: what's happening, and since when." visual={<MonitoringVisual />} />
+          <FeatureBlock icon={<Bell className="h-5 w-5" />} tag="Auto-fix" title="Automatic router restart" body="If your WiFi drops, we restart the router for you through a smart plug — the fix that sorts most outages — usually before you'd even hear about it." visual={<AlertVisual />} />
+          <FeatureBlock icon={<Gauge className="h-5 w-5" />} tag="Reporting" title="Weekly health report" body="A simple summary lands in your inbox each week, so any recurring niggles get spotted early — and you've always got a clear view of your property's WiFi health." visual={<DashboardVisual />} />
+        </div>
+      </section>
+
+      {/* HOW IT WORKS */}
+      <section className="relative z-10 px-6 pt-40">
+        <div className="mx-auto max-w-6xl text-center">
+          <SectionEyebrow>How it works</SectionEyebrow>
+          <SectionTitle>Up and running <GradientText>in about 10 minutes</GradientText></SectionTitle>
+        </div>
+        <div className="mx-auto mt-16 grid max-w-6xl gap-5 sm:grid-cols-3">
+          {[
+            { n: "1", title: "Plug in your kit", body: "Your monitor and smart plug arrive ready to go. Plug the monitor into your router, plug the router into the smart plug, and power it on. No apps to configure, nothing technical to set." },
+            { n: "2", title: "Place your sensors", body: "Your temperature, humidity and water-leak sensors come already paired, so there's no fiddly setup. Just pop them where they're needed — under a sink, in the loft, by the boiler — and they start working straight away." },
+            { n: "3", title: "We take it from here", body: "If your WiFi drops, Inntact restarts the router automatically and emails you what happened. Each week you also get a simple health report — usually there's nothing for you to do." },
+          ].map((step) => (
+            <div key={step.n} className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-b from-white/10 to-transparent p-6 transition hover:border-emerald-500/30">
+              <div className="mb-5 inline-flex h-10 w-10 items-center justify-center rounded-xl border border-emerald-500/20 bg-emerald-500/10 text-sm font-semibold text-emerald-300">{step.n}</div>
+              <h3 className="text-xl font-semibold tracking-tight text-white">{step.title}</h3>
+              <p className="mt-2 text-sm text-slate-400">{step.body}</p>
+            </div>
+          ))}
         </div>
       </section>
 
@@ -397,7 +418,7 @@ export default function InntactHomepage() {
             </div>
           </div>
           <FloatingChip className="left-2 top-10 hidden md:flex" color="emerald" icon={<Check className="h-3 w-3" />} title="Guests Protected" sub="All systems normal" />
-          <FloatingChip className="right-2 top-24 hidden md:flex" color="amber" icon={<AlertTriangle className="h-3 w-3" />} title="4G Failover: Standby" sub="Ready to activate" />
+          <FloatingChip className="right-2 top-24 hidden md:flex" color="amber" icon={<AlertTriangle className="h-3 w-3" />} title="4G backup: standby" sub="Ready if the line drops" />
           <FloatingChip className="-bottom-4 left-1/4 hidden md:flex" color="cyan" icon={<Signal className="h-3 w-3" />} title="99.8% Uptime" sub="Last 30 days" />
         </div>
       </section>
@@ -416,7 +437,7 @@ export default function InntactHomepage() {
                 {[
                   { title: "Live connection status", body: "A clear green screen the moment WiFi is working — reassurance before the bags are unpacked." },
                   { title: "Current speeds", body: "Guests can see their download and upload speeds in real time, so they know what to expect." },
-                  { title: "4G backup protection", body: "If broadband fails, the property automatically switches to 4G backup — and guests stay online." },
+                  { title: "4G backup protection", body: "If the broadband line itself fails, the property switches to 4G backup, so guests usually stay online while it recovers." },
                 ].map((item) => (
                   <li key={item.title} className="flex gap-4">
                     <span className="mt-1 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-emerald-500/20">
@@ -451,9 +472,9 @@ export default function InntactHomepage() {
             <div className="pointer-events-none absolute inset-0 opacity-40" style={{ backgroundImage: "radial-gradient(circle at 20% 20%, rgba(16,185,129,0.25), transparent 40%), radial-gradient(circle at 80% 80%, rgba(34,211,238,0.2), transparent 40%)" }} />
             <div className="relative grid gap-10 lg:grid-cols-2 lg:items-center">
               <div>
-                <SectionEyebrow>Optional extras</SectionEyebrow>
-                <h2 className="text-balance text-4xl font-semibold tracking-tight sm:text-5xl">Total peace of mind <GradientText>with smart sensors</GradientText></h2>
-                <p className="mt-4 max-w-xl text-slate-400">Add smart sensors for total property peace of mind. Catch leaks, freezes and humidity issues before they turn into five-figure repair bills.</p>
+                <SectionEyebrow>Included in your kit</SectionEyebrow>
+                <h2 className="text-balance text-4xl font-semibold tracking-tight sm:text-5xl">Smart sensors for <GradientText>leaks, damp and freezing</GradientText></h2>
+                <p className="mt-4 max-w-xl text-slate-400">Alongside the WiFi, your sensors keep an eye on temperature, humidity and water leaks — the things that quietly cause damage in an empty property. They arrive already paired, so you just place them where they're needed. Catch a leak or a freeze early, before it becomes an expensive repair.</p>
                 <div className="mt-8 flex flex-wrap gap-3">
                   <GlowButton href="#features">See how it works</GlowButton>
                 </div>
@@ -468,16 +489,31 @@ export default function InntactHomepage() {
         </div>
       </section>
 
+      {/* FOUNDER */}
+      <section className="relative z-10 px-6 pt-40">
+        <div className="mx-auto max-w-3xl">
+          <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-slate-900/60 p-10 sm:p-14">
+            <div className="pointer-events-none absolute inset-0 opacity-40" style={{ backgroundImage: "radial-gradient(circle at 0% 0%, rgba(16,185,129,0.18), transparent 45%)" }} />
+            <div className="relative">
+              <SectionEyebrow>From the founder</SectionEyebrow>
+              <h2 className="text-balance text-3xl font-semibold tracking-tight text-slate-50 sm:text-4xl">I'm Eddie — and I'll be the one watching your WiFi</h2>
+              <p className="mt-5 text-slate-400">I built Inntact to look after property WiFi the way I'd want my own looked after: quietly, in the background, with a real person paying attention. There's no call centre and no ticket queue. When something drops, you hear from me. And I read every email personally — so if you ever want to ask a question before you sign up, just send one.</p>
+              <p className="mt-5 text-sm text-slate-300">Eddie · Founder, Inntact · <a href="mailto:hello@inntact.co.uk" className="text-emerald-300 transition hover:text-emerald-200">hello@inntact.co.uk</a></p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* PRICING */}
       <section id="pricing" className="relative z-10 px-6 pt-40">
         <div className="mx-auto max-w-6xl text-center">
           <SectionEyebrow>Pricing</SectionEyebrow>
-          <SectionTitle>Simple pricing, <GradientText>no tiers</GradientText></SectionTitle>
-          <p className="mx-auto mt-4 max-w-xl text-slate-400">30-day money-back guarantee. Cancel any time. No setup fees.</p>
+          <SectionTitle>Simple <GradientText>pricing</GradientText></SectionTitle>
+          <p className="mx-auto mt-4 max-w-xl text-slate-400">One plan, monthly or yearly. 30-day money-back guarantee, cancel any time, no setup fees.</p>
         </div>
         <div className="mx-auto mt-14 grid max-w-3xl gap-5 sm:grid-cols-2">
-          <PriceCard name="Monthly" price="£49" per="/ month" desc="Full monitoring, cancel any time." features={["24/7 broadband monitoring", "Email alerts for outages &amp; issues", "Speed history &amp; uptime reports", "Owner dashboard", "Smart sensor support", "No setup fee"]} cta="Get started" />
-          <PriceCard name="Annual" price="£490" per="/ year" desc="Two months free. Pay once, monitor all year." features={["Everything in Monthly", "<strong>Save £98</strong> vs monthly", "Priority email support", "Early access to new features"]} cta="Get started" highlighted />
+          <PriceCard name="Monthly" price="£49" per="/ month" desc="Everything included, cancel any time." features={["24/7 WiFi monitoring", "Automatic router restart", "4G backup if the line fails", "Instant email alerts", "Weekly health report", "Owner dashboard", "Smart sensors included", "No setup fee"]} cta="Get started" />
+          <PriceCard name="Annual" price="£490" per="/ year" desc="Two months free. Pay once, covered all year." features={["Everything in Monthly", "<strong>Two months free</strong> vs monthly", "Priority email support", "Early access to new features"]} cta="Get started" highlighted />
         </div>
       </section>
 
@@ -488,12 +524,13 @@ export default function InntactHomepage() {
           <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-slate-900/60 p-10 text-center sm:p-16">
             <div className="pointer-events-none absolute inset-0" style={{ backgroundImage: "radial-gradient(circle at 50% 0%, rgba(16,185,129,0.25), transparent 50%), radial-gradient(circle at 50% 100%, rgba(34,211,238,0.2), transparent 50%)" }} />
             <div className="relative">
-              <h2 className="text-balance text-4xl font-semibold tracking-tight sm:text-6xl">Protect Your Reviews. <GradientText>Protect Your Guests.</GradientText></h2>
-              <p className="mx-auto mt-5 max-w-xl text-slate-400">Know about problems before your guests do. Protect your reviews, and your reputation.</p>
+              <h2 className="text-balance text-4xl font-semibold tracking-tight sm:text-6xl">Let's get your <GradientText>WiFi watched</GradientText></h2>
+              <p className="mx-auto mt-5 max-w-xl text-slate-400">Set up takes about 10 minutes, and from then on it runs quietly in the background. If anything's unclear, email me first — I read every one.</p>
               <div className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
                 <GlowButton primary href="/signup">Get Started</GlowButton>
+                <GlowButton href="mailto:hello@inntact.co.uk">Email Eddie a question</GlowButton>
               </div>
-              <p className="mt-4 text-xs text-slate-500">30-day money-back guarantee · No credit card required</p>
+              <p className="mt-4 text-xs text-slate-500">30-day money-back guarantee · Cancel any time, no contract</p>
             </div>
           </div>
         </div>
@@ -508,15 +545,15 @@ export default function InntactHomepage() {
             </div>
             <div>
               <div className="text-sm font-semibold">Inntact</div>
-              <div className="text-xs text-slate-500">Monitoring for holiday lets</div>
+              <div className="text-xs text-slate-500">WiFi monitoring for holiday lets, run personally by Eddie</div>
             </div>
           </div>
           <div className="flex flex-wrap items-center gap-6 text-sm text-slate-400">
-            <a href="#" className="transition hover:text-white">Contact</a>
-            <a href="#" className="transition hover:text-white">Privacy</a>
-            <a href="#" className="transition hover:text-white">Terms</a>
+            <a href="mailto:hello@inntact.co.uk" className="transition hover:text-white">Contact</a>
+            <a href="/privacy" className="transition hover:text-white">Privacy</a>
+            <a href="/terms" className="transition hover:text-white">Terms</a>
           </div>
-          <div className="text-xs text-slate-500">© {new Date().getFullYear()} Inntact Ltd. All rights reserved.</div>
+          <div className="text-xs text-slate-500">© {new Date().getFullYear()} Inntact Ltd · Company no. 17140019 · 14 Tarn Moor Crescent, Skipton, BD23 1LT</div>
         </div>
       </footer>
     </div>
