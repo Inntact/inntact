@@ -272,6 +272,19 @@ function PriceCard({ name, price, per, desc, features, cta, highlighted }) {
 }
 
 
+function FaqItem({ q, children }) {
+  const [open, setOpen] = useState(false);
+  return (
+    <div className="border-b border-white/10">
+      <button onClick={() => setOpen((v) => !v)} className="flex w-full items-center justify-between gap-4 py-5 text-left transition hover:text-white" aria-expanded={open}>
+        <span className="text-base font-medium text-white">{q}</span>
+        <ChevronRight className={`h-4 w-4 shrink-0 text-emerald-300 transition-transform ${open ? "rotate-90" : ""}`} />
+      </button>
+      {open && <p className="pb-5 text-sm leading-relaxed text-slate-400">{children}</p>}
+    </div>
+  );
+}
+
 export default function InntactHomepage() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -301,6 +314,7 @@ export default function InntactHomepage() {
             <a href="#features" className="transition hover:text-white">Features</a>
             <a href="#solution" className="transition hover:text-white">Solution</a>
             <a href="#pricing" className="transition hover:text-white">Pricing</a>
+            <a href="#faq" className="transition hover:text-white">FAQ</a>
           </nav>
           <div className="hidden items-center gap-3 md:flex">
             <a href="https://dashboard.inntact.co.uk/" className="text-sm text-slate-300 transition hover:text-white">Sign in</a>
@@ -316,6 +330,7 @@ export default function InntactHomepage() {
               <a href="#features" onClick={() => setMenuOpen(false)}>Features</a>
               <a href="#solution" onClick={() => setMenuOpen(false)}>Solution</a>
               <a href="#pricing" onClick={() => setMenuOpen(false)}>Pricing</a>
+              <a href="#faq" onClick={() => setMenuOpen(false)}>FAQ</a>
               <div className="pt-2"><GlowButton primary href="/signup" className="w-full">Get Started</GlowButton></div>
             </div>
           </div>
@@ -331,10 +346,10 @@ export default function InntactHomepage() {
             <ChevronRight className="h-3.5 w-3.5 text-slate-500" />
           </div>
           <h1 className="mx-auto max-w-4xl text-balance text-5xl font-semibold tracking-tight text-white sm:text-6xl md:text-7xl" style={{ lineHeight: 1.05 }}>
-            Hear about WiFi problems <GradientText>before your guests do</GradientText>
+            Keep your guests online <GradientText>and your property protected</GradientText>
           </h1>
           <p className="mx-auto mt-6 max-w-2xl text-balance text-lg text-slate-400 sm:text-xl">
-            Inntact watches over your holiday let's WiFi around the clock. If it drops, we automatically restart your router — often fixing it before anyone notices — and email you what happened.
+            Inntact watches your holiday let's WiFi around the clock and automatically restarts the router when it drops — which clears the most common problems on its own. If the broadband line itself fails, 4G backup keeps guests online, and smart sensors watch for leaks and freezing while you're away.
           </p>
           <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
             <GlowButton primary href="/signup">Get Started</GlowButton>
@@ -369,13 +384,13 @@ export default function InntactHomepage() {
       <section id="features" className="relative z-10 px-6 pt-40">
         <div className="mx-auto max-w-6xl text-center">
           <SectionEyebrow>The solution</SectionEyebrow>
-          <SectionTitle>Most problems, sorted <GradientText>before you'd hear about them</GradientText></SectionTitle>
-          <p className="mx-auto mt-4 max-w-2xl text-slate-400">Inntact watches your WiFi around the clock and steps in the moment something's off — so most issues are fixed before a guest ever picks up the phone.</p>
+          <SectionTitle>Not just alerts — Inntact <GradientText>acts when WiFi drops</GradientText></SectionTitle>
+          <p className="mx-auto mt-4 max-w-2xl text-slate-400">Inntact watches your WiFi around the clock and steps in automatically when it drops. Most problems clear with a restart on their own; when one needs a real fix, you'll know right away — with the history to back you up.</p>
         </div>
         <div className="mx-auto mt-16 grid max-w-6xl gap-5 lg:grid-cols-3">
-          <FeatureBlock icon={<Activity className="h-5 w-5" />} tag="Monitoring" title="24/7 WiFi monitoring" body="We watch your property's connection around the clock, so a drop never goes unnoticed. As soon as a real problem is confirmed, you get a plain email: what's happening, and since when." visual={<MonitoringVisual />} />
-          <FeatureBlock icon={<Bell className="h-5 w-5" />} tag="Auto-fix" title="Automatic router restart" body="If your WiFi drops, we restart the router for you through a smart plug — the fix that sorts most outages — usually before you'd even hear about it." visual={<AlertVisual />} />
-          <FeatureBlock icon={<Gauge className="h-5 w-5" />} tag="Reporting" title="Weekly health report" body="A simple summary lands in your inbox each week, so any recurring niggles get spotted early — and you've always got a clear view of your property's WiFi health." visual={<DashboardVisual />} />
+          <FeatureBlock icon={<Activity className="h-5 w-5" />} tag="Monitoring" title="24/7 monitoring & alerts" body="We watch your property's connection around the clock, so a drop never goes unnoticed. As soon as a real problem is confirmed, you get a plain email: what's happening, and since when." visual={<MonitoringVisual />} />
+          <FeatureBlock icon={<Bell className="h-5 w-5" />} tag="Auto-restart" title="Automatic router restart" body="If your WiFi drops, we restart the router for you through a smart plug — which clears most common outages on its own, usually before you'd even hear about it. When a restart isn't enough, you'll know straight away." visual={<AlertVisual />} />
+          <FeatureBlock icon={<Gauge className="h-5 w-5" />} tag="Reporting" title="Weekly report & history" body="A simple summary each week, plus a full record of every drop. Spot recurring patterns early — and if your broadband provider is the cause, you've got the evidence to take to them." visual={<DashboardVisual />} />
         </div>
       </section>
 
@@ -509,14 +524,51 @@ export default function InntactHomepage() {
         <div className="mx-auto max-w-6xl text-center">
           <SectionEyebrow>Pricing</SectionEyebrow>
           <SectionTitle>Simple <GradientText>pricing</GradientText></SectionTitle>
-          <p className="mx-auto mt-4 max-w-xl text-slate-400">One plan, monthly or yearly. 30-day money-back guarantee, cancel any time, no setup fees.</p>
+          <p className="mx-auto mt-4 max-w-xl text-slate-400">One plan, monthly or yearly. All the kit is included and posted to you ready to go — it's yours to use for as long as you subscribe, and you simply send it back if you ever cancel. 30-day money-back guarantee, no setup fees.</p>
         </div>
         <div className="mx-auto mt-14 grid max-w-3xl gap-5 sm:grid-cols-2">
-          <PriceCard name="Monthly" price="£49" per="/ month" desc="Everything included, cancel any time." features={["24/7 WiFi monitoring", "Automatic router restart", "4G backup if the line fails", "Instant email alerts", "Weekly health report", "Owner dashboard", "Smart sensors included", "No setup fee"]} cta="Get started" />
+          <PriceCard name="Monthly" price="£49" per="/ month" desc="Everything included, cancel any time." features={["All kit included &mdash; monitor, smart plug &amp; sensors", "24/7 WiFi monitoring &amp; alerts", "Automatic router restart", "4G backup if the line fails", "Leak &amp; temperature sensors", "Weekly report &amp; full history", "Owner dashboard", "30-day money-back guarantee"]} cta="Get started" />
           <PriceCard name="Annual" price="£490" per="/ year" desc="Two months free. Pay once, covered all year." features={["Everything in Monthly", "<strong>Two months free</strong> vs monthly", "Priority email support", "Early access to new features"]} cta="Get started" highlighted />
         </div>
       </section>
 
+
+      {/* FAQ */}
+      <section id="faq" className="relative z-10 px-6 pt-40">
+        <div className="mx-auto max-w-3xl">
+          <div className="text-center">
+            <SectionEyebrow>FAQ</SectionEyebrow>
+            <SectionTitle>Questions, <GradientText>answered</GradientText></SectionTitle>
+          </div>
+          <div className="mx-auto mt-12 max-w-2xl">
+            <FaqItem q="Do I need to install anything technical?">
+              No. Your kit arrives ready to go — plug the monitor into your router, plug the router into the included smart plug, and place the sensors where they're needed. Most owners are set up in about 10 minutes, with no apps to configure.
+            </FaqItem>
+            <FaqItem q="What can the automatic restart actually fix?">
+              It power-cycles your router through the smart plug, which clears the most common cause of a WiFi drop. It can't repair a fault on the broadband line itself — but when a restart isn't enough, we tell you straight away, and 4G backup keeps your guests online in the meantime.
+            </FaqItem>
+            <FaqItem q="What if the problem is my broadband provider, not your kit?">
+              That's exactly where the weekly report and full history help. You'll have a clear record of every drop to take to your provider — and while the line's down, 4G backup keeps guests connected.
+            </FaqItem>
+            <FaqItem q="Is there a contract?">
+              No fixed term. Pay monthly or yearly and cancel any time. The kit is included on loan for as long as you subscribe; if you cancel, you simply send it back.
+            </FaqItem>
+            <FaqItem q="Does it work when I'm not at the property?">
+              Yes — that's the point. Everything runs remotely. You get alerts and reports by email, and you can check your dashboard from anywhere.
+            </FaqItem>
+            <FaqItem q="What do the sensors cover?">
+              Temperature, humidity and water leaks — so you catch a leak or the risk of frozen pipes early, before they turn into an expensive repair. They arrive already paired; you just place them where they're needed.
+            </FaqItem>
+            <FaqItem q="Do you monitor what my guests do online?">
+              No. We only watch whether the connection is up and how it's performing — never the content of anyone's internet use. There's more detail in our <Link to="/privacy" className="text-emerald-300 transition hover:text-emerald-200">Privacy Policy</Link>.
+            </FaqItem>
+          </div>
+          <p className="mt-10 text-center text-sm text-slate-400">
+            Still wondering something? Email me at{" "}
+            <a href="mailto:hello@inntact.co.uk" className="text-emerald-300 transition hover:text-emerald-200">hello@inntact.co.uk</a>{" "}— I read every one.
+          </p>
+        </div>
+      </section>
 
       {/* FINAL CTA */}
       <section className="relative z-10 px-6 pt-40">
@@ -524,7 +576,7 @@ export default function InntactHomepage() {
           <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-slate-900/60 p-10 text-center sm:p-16">
             <div className="pointer-events-none absolute inset-0" style={{ backgroundImage: "radial-gradient(circle at 50% 0%, rgba(16,185,129,0.25), transparent 50%), radial-gradient(circle at 50% 100%, rgba(34,211,238,0.2), transparent 50%)" }} />
             <div className="relative">
-              <h2 className="text-balance text-4xl font-semibold tracking-tight sm:text-6xl">Let's get your <GradientText>WiFi watched</GradientText></h2>
+              <h2 className="text-balance text-4xl font-semibold tracking-tight sm:text-6xl">Keep your let online <GradientText>and protected</GradientText></h2>
               <p className="mx-auto mt-5 max-w-xl text-slate-400">Set up takes about 10 minutes, and from then on it runs quietly in the background. If anything's unclear, email me first — I read every one.</p>
               <div className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
                 <GlowButton primary href="/signup">Get Started</GlowButton>
