@@ -343,13 +343,13 @@ export default function InntactHomepage() {
         <div className="mx-auto max-w-5xl text-center">
           <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/10 px-3 py-1 text-xs text-slate-300 backdrop-blur-sm">
             <Pulse color="bg-emerald-400" />
-            24/7 WiFi monitoring for UK holiday lets
+            Looking after UK holiday lets, 24/7
           </div>
           <h1 className="mx-auto max-w-4xl text-balance text-5xl font-semibold tracking-tight text-white sm:text-6xl md:text-7xl" style={{ lineHeight: 1.05 }}>
-            Hear about WiFi problems before your guests do
+            Your holiday let, looked after around the clock
           </h1>
           <p className="mx-auto mt-6 max-w-2xl text-balance text-lg text-slate-400 sm:text-xl">
-            Inntact watches your holiday let's WiFi around the clock and restarts the router automatically when it drops — clearing the most common problems before they reach a review. 4G backup and smart sensors come built in.
+            Inntact keeps watch over your property day and night — monitoring the WiFi, restarting the router automatically when it drops, and catching leaks or damp early. Real peace of mind between guests, without you having to check a thing.
           </p>
           <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
             <GlowButton primary href="/signup">Get set up</GlowButton>
@@ -610,7 +610,7 @@ export default function InntactHomepage() {
             <a href="/privacy" className="transition hover:text-white">Privacy</a>
             <a href="/terms" className="transition hover:text-white">Terms</a>
           </div>
-          <div className="text-xs text-slate-500">© {new Date().getFullYear()} Inntact Ltd · Company no. 17140019 · 14 Tarn Moor Crescent, Skipton, BD23 1LT</div>
+          <div className="text-xs text-slate-500">© {new Date().getFullYear()} Inntact Ltd · Company no. 17140019</div>
         </div>
       </footer>
     </div>
