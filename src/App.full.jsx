@@ -343,13 +343,13 @@ export default function InntactHomepage() {
         <div className="mx-auto max-w-5xl text-center">
           <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/10 px-3 py-1 text-xs text-slate-300 backdrop-blur-sm">
             <Pulse color="bg-emerald-400" />
-            Looking after UK holiday lets, 24/7
+            WiFi monitoring for UK holiday lets
           </div>
           <h1 className="mx-auto max-w-4xl text-balance text-5xl font-semibold tracking-tight text-white sm:text-6xl md:text-7xl" style={{ lineHeight: 1.05 }}>
-            Always-on protection for your holiday let
+            Keep guests online — even when broadband fails
           </h1>
           <p className="mx-auto mt-6 max-w-2xl text-balance text-lg text-slate-400 sm:text-xl">
-            Inntact keeps watch day and night — holding the WiFi steady, restarting the router automatically when it drops, and catching leaks or damp early. Peace of mind between guests, without you having to check a thing.
+            Inntact monitors your holiday let's WiFi 24/7. If the router drops, it restarts automatically and lets you know. If broadband fails completely, built-in 4G backup takes over so guests stay connected while you contact your provider. Sensors also catch leaks, damp and freezing temperatures early — before small problems turn into expensive ones.
           </p>
           <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
             <GlowButton primary href="/signup">Get set up</GlowButton>
