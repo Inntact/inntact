@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import {
   Wifi, Bell, Gauge, Activity, Thermometer, Droplet, AlertTriangle, Check,
-  ArrowRight, Star, Menu, X, Signal, ChevronRight, Sparkles, TrendingUp, Clock, Globe,
+  ArrowRight, Star, Menu, X, Signal, ChevronRight, Sparkles, TrendingUp, Clock, Globe, Shield,
 } from "lucide-react";
 import {
   AreaChart, Area, ResponsiveContainer,
@@ -346,10 +346,10 @@ export default function InntactHomepage() {
             Looking after UK holiday lets, 24/7
           </div>
           <h1 className="mx-auto max-w-4xl text-balance text-5xl font-semibold tracking-tight text-white sm:text-6xl md:text-7xl" style={{ lineHeight: 1.05 }}>
-            Your holiday let, looked after around the clock
+            Always-on protection for your holiday let
           </h1>
           <p className="mx-auto mt-6 max-w-2xl text-balance text-lg text-slate-400 sm:text-xl">
-            Inntact keeps watch over your property day and night — monitoring the WiFi, restarting the router automatically when it drops, and catching leaks or damp early. Real peace of mind between guests, without you having to check a thing.
+            Inntact keeps watch day and night — holding the WiFi steady, restarting the router automatically when it drops, and catching leaks or damp early. Peace of mind between guests, without you having to check a thing.
           </p>
           <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
             <GlowButton primary href="/signup">Get set up</GlowButton>
@@ -357,7 +357,7 @@ export default function InntactHomepage() {
           </div>
           <p className="mt-5 text-sm text-slate-400">From £49 a month per property · cancel any time</p>
           <div className="mt-6 flex flex-col items-center justify-center gap-3 text-xs text-slate-500 sm:flex-row sm:gap-6">
-            <span className="inline-flex items-center gap-1.5"><Check className="h-3.5 w-3.5 text-emerald-400" />Most properties live in about 10 minutes</span>
+            <span className="inline-flex items-center gap-1.5"><Check className="h-3.5 w-3.5 text-emerald-400" />Most properties live in 10 minutes</span>
             <span className="inline-flex items-center gap-1.5"><Check className="h-3.5 w-3.5 text-emerald-400" />30-day money-back guarantee</span>
             <span className="inline-flex items-center gap-1.5"><Check className="h-3.5 w-3.5 text-emerald-400" />Secure payment by Stripe</span>
           </div>
@@ -392,7 +392,7 @@ export default function InntactHomepage() {
         <div className="mx-auto mt-16 grid max-w-6xl gap-5 lg:grid-cols-3">
           <FeatureBlock icon={<Activity className="h-5 w-5" />} tag="Monitoring" title="24/7 monitoring & alerts" body="We watch your property's connection around the clock, so a drop never goes unnoticed. As soon as a real problem is confirmed, you get a plain email: what's happening, and since when." visual={<MonitoringVisual />} />
           <FeatureBlock icon={<Bell className="h-5 w-5" />} tag="Auto-restart" title="Automatic router restart" body="If your WiFi drops, we restart the router for you through a smart plug — which clears most common outages on its own, usually before you'd even hear about it. When a restart isn't enough, you'll know straight away." visual={<AlertVisual />} />
-          <FeatureBlock icon={<Gauge className="h-5 w-5" />} tag="Reporting" title="Weekly report & history" body="A simple summary each week, plus a full record of every drop. Spot recurring patterns early — and if your broadband provider is the cause, you've got the evidence to take to them." visual={<DashboardVisual />} />
+          <FeatureBlock icon={<Shield className="h-5 w-5" />} tag="Resilience Log" title="Every intervention, on record" body="Your Resilience Log shows every automatic intervention from the last 30 days — each time Inntact restarted the router for you — alongside connection speeds across the last 7 days and 24 hours. If your broadband provider is the cause, you've got the evidence to take to them." visual={<DashboardVisual />} />
         </div>
       </section>
 
@@ -400,13 +400,13 @@ export default function InntactHomepage() {
       <section className="relative z-10 px-6 pt-40">
         <div className="mx-auto max-w-6xl text-center">
           <SectionEyebrow>How it works</SectionEyebrow>
-          <SectionTitle>Up and running <GradientText>in about 10 minutes</GradientText></SectionTitle>
+          <SectionTitle>Up and running <GradientText>in 10 minutes</GradientText></SectionTitle>
         </div>
         <div className="mx-auto mt-16 grid max-w-6xl gap-5 sm:grid-cols-3">
           {[
             { n: "1", title: "Plug in your kit", body: "Your monitor and smart plug arrive ready to go. Plug the monitor into your router, plug the router into the smart plug, and power it on. No apps to configure, nothing technical to set." },
             { n: "2", title: "Place your sensors", body: "Your temperature, humidity and water-leak sensors come already paired, so there's no fiddly setup. Just pop them where they're needed — under a sink, in the loft, by the boiler — and they start working straight away." },
-            { n: "3", title: "We take it from here", body: "If your WiFi drops, Inntact restarts the router automatically and emails you what happened. Each week you also get a simple health report — usually there's nothing for you to do." },
+            { n: "3", title: "We take it from here", body: "If your WiFi drops, Inntact restarts the router automatically and emails you what happened. Every action is recorded in your Resilience Log — so usually there's nothing for you to do." },
           ].map((step) => (
             <div key={step.n} className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-b from-white/10 to-transparent p-6 transition hover:border-emerald-500/30">
               <div className="mb-5 inline-flex h-10 w-10 items-center justify-center rounded-xl border border-emerald-500/20 bg-emerald-500/10 text-sm font-semibold text-emerald-300">{step.n}</div>
@@ -514,7 +514,7 @@ export default function InntactHomepage() {
             <div className="relative">
               <SectionEyebrow>Why Inntact exists</SectionEyebrow>
               <h2 className="text-balance text-3xl font-semibold tracking-tight text-slate-50 sm:text-4xl">Monitoring done properly — and personally</h2>
-              <p className="mt-5 text-slate-400">Inntact looks after holiday-let WiFi the way it should be done: quietly, in the background, with real people paying attention rather than a call-centre script. Our founder, Eddie, started the company after seeing how often a simple WiFi drop became a bad review — and how rarely owners found out in time. That same standard runs through everything we do: clear alerts, honest weekly reports, and help from someone who understands your setup.</p>
+              <p className="mt-5 text-slate-400">Inntact looks after holiday-let WiFi the way it should be done: quietly, in the background, with real people paying attention rather than a call-centre script. Our founder, Eddie, started the company after seeing how often a simple WiFi drop became a bad review — and how rarely owners found out in time. That same standard runs through everything we do: clear alerts, an honest record of every action we take, and help from someone who understands your setup.</p>
               <p className="mt-5 text-sm text-slate-300">Eddie · Founder, Inntact · <a href="mailto:hello@inntact.co.uk" className="text-emerald-300 transition hover:text-emerald-200">hello@inntact.co.uk</a></p>
             </div>
           </div>
@@ -529,7 +529,7 @@ export default function InntactHomepage() {
           <p className="mx-auto mt-4 max-w-xl text-slate-400">One simple plan per property, monthly or yearly. All the kit is included and posted to you ready to go — it's yours to use for as long as you subscribe, and you simply send it back if you ever cancel. 30-day money-back guarantee, no setup fees.</p>
         </div>
         <div className="mx-auto mt-14 grid max-w-3xl gap-5 sm:grid-cols-2">
-          <PriceCard name="Monthly" price="£49" per="/ month per property" desc="Everything included, per property. Cancel any time." features={["All kit included &mdash; monitor, smart plug &amp; sensors", "24/7 WiFi monitoring &amp; alerts", "Automatic router restart", "4G backup if the line fails", "Leak &amp; temperature sensors", "Weekly report &amp; full history", "Owner dashboard", "30-day money-back guarantee"]} cta="Get set up" />
+          <PriceCard name="Monthly" price="£49" per="/ month per property" desc="Everything included, per property. Cancel any time." features={["All kit included &mdash; monitor, smart plug &amp; sensors", "24/7 WiFi monitoring &amp; alerts", "Automatic router restart", "4G backup if the line fails", "Leak &amp; temperature sensors", "Resilience Log &amp; connection history", "Owner dashboard", "30-day money-back guarantee"]} cta="Get set up" />
           <PriceCard name="Annual" price="£490" per="/ year per property" desc="Two months free. Pay once, covered all year." features={["Everything in Monthly", "<strong>Two months free</strong> vs monthly", "Direct line to the founder", "Early access to new features"]} cta="Get set up" highlighted />
         </div>
       </section>
@@ -544,13 +544,13 @@ export default function InntactHomepage() {
           </div>
           <div className="mx-auto mt-12 max-w-2xl">
             <FaqItem q="Do I need to install anything technical?">
-              No. Your kit arrives ready to go — plug the monitor into your router, plug the router into the included smart plug, and place the sensors where they're needed. Most owners are set up in about 10 minutes, with no apps to configure.
+              No. Your kit arrives ready to go — plug the monitor into your router, plug the router into the included smart plug, and place the sensors where they're needed. Most owners are set up in 10 minutes, with no apps to configure.
             </FaqItem>
             <FaqItem q="What can the automatic restart actually fix?">
               It power-cycles your router through the smart plug, which clears the most common cause of a WiFi drop. It can't repair a fault on the broadband line itself — but when a restart isn't enough, we tell you straight away, and 4G backup keeps your guests online in the meantime, wherever there's a mobile signal.
             </FaqItem>
             <FaqItem q="What if the problem is my broadband provider, not your kit?">
-              That's exactly where the weekly report and full history help. You'll have a clear record of every drop to take to your provider — and while the line's down, 4G backup keeps guests connected wherever there's a mobile signal.
+              That's exactly where your Resilience Log and connection history help. You'll have a clear record of every drop to take to your provider — and while the line's down, 4G backup keeps guests connected wherever there's a mobile signal.
             </FaqItem>
             <FaqItem q="Is there a contract?">
               No fixed term. Pay monthly or yearly and cancel any time. The kit is included on loan for as long as you subscribe; if you cancel, you simply send it back.
@@ -559,7 +559,7 @@ export default function InntactHomepage() {
               Yes. It's one simple plan per property: £49 a month or £490 a year, with all the kit included. If you run several lets, each one gets its own kit and its own dashboard — just sign up each property.
             </FaqItem>
             <FaqItem q="Does it work when I'm not at the property?">
-              Yes — that's the point. Everything runs remotely. You get alerts and reports by email, and you can check your dashboard from anywhere.
+              Yes — that's the point. Everything runs remotely. You get alerts by email, and you can check your dashboard — including your Resilience Log and connection speeds — from anywhere.
             </FaqItem>
             <FaqItem q="What do the sensors cover?">
               Temperature, humidity and water leaks — so you catch a leak or the risk of frozen pipes early, before they turn into an expensive repair. They arrive already paired; you just place them where they're needed.
@@ -582,7 +582,7 @@ export default function InntactHomepage() {
             <div className="pointer-events-none absolute inset-0" style={{ backgroundImage: "radial-gradient(circle at 50% 0%, rgba(16,185,129,0.25), transparent 50%), radial-gradient(circle at 50% 100%, rgba(34,211,238,0.2), transparent 50%)" }} />
             <div className="relative">
               <h2 className="text-balance text-4xl font-semibold tracking-tight sm:text-6xl">Keep your guests online — <GradientText>we'll watch the WiFi</GradientText></h2>
-              <p className="mx-auto mt-5 max-w-xl text-slate-400">Setup takes about 10 minutes, and from then on it runs quietly in the background. If anything's unclear, email us first — we're happy to talk it through.</p>
+              <p className="mx-auto mt-5 max-w-xl text-slate-400">Setup typically takes 10 minutes, and from then on it runs quietly in the background. If anything's unclear, email us first — we're happy to talk it through.</p>
               <div className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
                 <GlowButton primary href="/signup">Get set up</GlowButton>
                 <GlowButton href="mailto:hello@inntact.co.uk">Ask us a question</GlowButton>
