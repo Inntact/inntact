@@ -378,7 +378,7 @@ export default function InntactHomepage() {
         <div className="mx-auto mt-16 grid max-w-6xl gap-4 sm:grid-cols-3">
           <PainCard icon={<AlertTriangle className="h-5 w-5" />} title="Guests notice a dropout first" body="Working guests rely on the WiFi. When it drops, they feel it straight away — and you'd usually rather hear it from us than from them." />
           <PainCard icon={<Clock className="h-5 w-5" />} title="You're often miles away" body="Managing a property remotely, it's hard to know what's happening on the ground. Inntact keeps watch so you don't have to guess." />
-          <PainCard icon={<Star className="h-5 w-5" />} title="It's your reviews on the line" body="A spell of bad WiFi is the kind of thing that ends up in a review. Catching it early keeps small problems from becoming public ones." />
+          <PainCard icon={<Star className="h-5 w-5" />} title="Your good reviews on the line" body="A spell of bad WiFi is the kind of thing that ends up in a review. Catching it early keeps small problems from becoming public ones." />
         </div>
       </section>
 
@@ -514,8 +514,55 @@ export default function InntactHomepage() {
             <div className="relative">
               <SectionEyebrow>Why Inntact exists</SectionEyebrow>
               <h2 className="text-balance text-3xl font-semibold tracking-tight text-slate-50 sm:text-4xl">Monitoring done properly — and personally</h2>
-              <p className="mt-5 text-slate-400">Inntact looks after holiday-let WiFi the way it should be done: quietly, in the background, with real people paying attention rather than a call-centre script. Our founder, Eddie, started the company after seeing how often a simple WiFi drop became a bad review — and how rarely owners found out in time. That same standard runs through everything we do: clear alerts, an honest record of every action we take, and help from someone who understands your setup.</p>
-              <p className="mt-5 text-sm text-slate-300">Eddie · Founder, Inntact · <a href="mailto:hello@inntact.co.uk" className="text-emerald-300 transition hover:text-emerald-200">hello@inntact.co.uk</a></p>
+              <p className="mt-5 text-slate-400">Inntact looks after holiday-let WiFi the way it should be done: quietly, in the background, with real people paying attention rather than a call-centre script. Our founder, Edward, started the company after seeing how often a simple WiFi drop became a bad review — and how rarely owners found out in time. That same standard runs through everything we do: clear alerts, an honest record of every action we take, and help from someone who understands your setup.</p>
+              <p className="mt-5 text-sm text-slate-300">Edward · Founder, Inntact · <a href="mailto:hello@inntact.co.uk" className="text-emerald-300 transition hover:text-emerald-200">hello@inntact.co.uk</a></p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ROI */}
+      <section className="relative z-10 px-6 pt-40">
+        <div className="mx-auto max-w-6xl text-center">
+          <SectionEyebrow>Return on investment</SectionEyebrow>
+          <SectionTitle>One incident pays for <GradientText>months of cover</GradientText></SectionTitle>
+          <p className="mx-auto mt-4 max-w-2xl text-slate-400">At £49 a month, Inntact costs less than a single night's refund — and far less than the bookings you lose when a bad review about WiFi puts guests off.</p>
+        </div>
+        <div className="mx-auto mt-16 grid max-w-6xl gap-4 sm:grid-cols-3">
+          <div className="group relative overflow-hidden rounded-2xl border border-white/10 bg-white/5 p-6 transition hover:border-white/20 hover:bg-white/10">
+            <div className="pointer-events-none absolute inset-0 opacity-0 transition-opacity group-hover:opacity-100" style={{ backgroundImage: "radial-gradient(circle at 50% 0%, rgba(16,185,129,0.08), transparent 60%)" }} />
+            <div className="relative">
+              <div className="mb-5 inline-flex h-10 w-10 items-center justify-center rounded-xl border border-emerald-500/20 bg-emerald-500/10 text-emerald-300"><TrendingUp className="h-5 w-5" /></div>
+              <h3 className="text-lg font-semibold tracking-tight text-white">Refunds avoided</h3>
+              <p className="mt-2 text-sm text-slate-400">Guests who lose WiFi during a stay often request partial or full refunds. A single refund of £100–£200 covers two to four months of Inntact — and that's before you factor in the time spent handling the complaint.</p>
+              <div className="mt-6 flex items-baseline gap-2 border-t border-white/5 pt-4">
+                <span className="text-2xl font-semibold text-white">£100–200</span>
+                <span className="text-xs text-slate-500">typical refund claim</span>
+              </div>
+            </div>
+          </div>
+          <div className="group relative overflow-hidden rounded-2xl border border-white/10 bg-white/5 p-6 transition hover:border-white/20 hover:bg-white/10">
+            <div className="pointer-events-none absolute inset-0 opacity-0 transition-opacity group-hover:opacity-100" style={{ backgroundImage: "radial-gradient(circle at 50% 0%, rgba(16,185,129,0.08), transparent 60%)" }} />
+            <div className="relative">
+              <div className="mb-5 inline-flex h-10 w-10 items-center justify-center rounded-xl border border-emerald-500/20 bg-emerald-500/10 text-emerald-300"><Star className="h-5 w-5" /></div>
+              <h3 className="text-lg font-semibold tracking-tight text-white">Bookings protected</h3>
+              <p className="mt-2 text-sm text-slate-400">One bad review mentioning WiFi can be enough to lose future bookings. At £100–£200 a night, missing even a single booking costs more than an entire year of Inntact. Protecting your rating is protecting your income.</p>
+              <div className="mt-6 flex items-baseline gap-2 border-t border-white/5 pt-4">
+                <span className="text-2xl font-semibold text-white">1 lost booking</span>
+                <span className="text-xs text-slate-500">= months of cover gone</span>
+              </div>
+            </div>
+          </div>
+          <div className="group relative overflow-hidden rounded-2xl border border-white/10 bg-white/5 p-6 transition hover:border-white/20 hover:bg-white/10">
+            <div className="pointer-events-none absolute inset-0 opacity-0 transition-opacity group-hover:opacity-100" style={{ backgroundImage: "radial-gradient(circle at 50% 0%, rgba(16,185,129,0.08), transparent 60%)" }} />
+            <div className="relative">
+              <div className="mb-5 inline-flex h-10 w-10 items-center justify-center rounded-xl border border-emerald-500/20 bg-emerald-500/10 text-emerald-300"><Sparkles className="h-5 w-5" /></div>
+              <h3 className="text-lg font-semibold tracking-tight text-white">Less than £2 a day</h3>
+              <p className="mt-2 text-sm text-slate-400">Inntact works out at under £2 a day per property — less than a cup of coffee. For that, you get round-the-clock monitoring, automatic restarts, 4G backup, and the confidence that a WiFi problem won't turn into a refund request or a one-star review.</p>
+              <div className="mt-6 flex items-baseline gap-2 border-t border-white/5 pt-4">
+                <span className="text-2xl font-semibold text-white">£1.61</span>
+                <span className="text-xs text-slate-500">per day on the monthly plan</span>
+              </div>
             </div>
           </div>
         </div>
