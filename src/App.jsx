@@ -4,6 +4,7 @@ import Signup from "./Signup.jsx";
 import Success from "./Success.jsx";
 import Privacy from "./Privacy.jsx";
 import Terms from "./Terms.jsx";
+import Contact from "./Contact.jsx";
 
 export default function App() {
   return (
@@ -14,6 +15,7 @@ export default function App() {
         <Route path="/success" element={<Success />} />
         <Route path="/privacy" element={<Privacy />} />
         <Route path="/terms" element={<Terms />} />
+        <Route path="/contact" element={<Contact />} />
       </Routes>
     </BrowserRouter>
   );

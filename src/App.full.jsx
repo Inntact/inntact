@@ -632,7 +632,7 @@ export default function InntactHomepage() {
               <p className="mx-auto mt-5 max-w-xl text-slate-400">Setup typically takes 10 minutes, and from then on it runs quietly in the background. If anything's unclear, email us first — we're happy to talk it through.</p>
               <div className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
                 <GlowButton primary href="/signup">Get set up</GlowButton>
-                <GlowButton href="mailto:hello@inntact.co.uk">Ask us a question</GlowButton>
+                <GlowButton href="/contact">Ask us a question</GlowButton>
               </div>
               <p className="mt-4 text-xs text-slate-500">30-day money-back guarantee · Cancel any time, no contract</p>
             </div>
@@ -653,7 +653,7 @@ export default function InntactHomepage() {
             </div>
           </div>
           <div className="flex flex-wrap items-center gap-6 text-sm text-slate-400">
-            <a href="mailto:hello@inntact.co.uk" className="transition hover:text-white">Contact</a>
+            <Link to="/contact" className="transition hover:text-white">Contact</Link>
             <a href="/privacy" className="transition hover:text-white">Privacy</a>
             <a href="/terms" className="transition hover:text-white">Terms</a>
           </div>
