@@ -114,7 +114,7 @@ function Steps({ current }) {
 function StepPlan({ plan, setPlan, onNext }) {
   const features = [
     "24/7 broadband monitoring",
-    "Instant SMS & email alerts",
+    "Instant email alerts",
     "Owner dashboard",
     "Guest WiFi status page & QR code",
     "Smart sensor support",
@@ -215,7 +215,7 @@ function StepDetails({ form, setField, onNext, onBack }) {
 
       <Input label="Full name" value={form.name} onChange={v => setField("name", v)} placeholder="Jane Smith" required />
       <Input label="Email address" type="email" value={form.email} onChange={v => setField("email", v)} placeholder="jane@example.com" required hint="Your dashboard login will be created with this email" />
-      <Input label="Phone number" type="tel" value={form.phone} onChange={v => setField("phone", v)} placeholder="07700 900123" required hint="We'll use this for urgent alerts only" />
+      <Input label="Phone number" type="tel" value={form.phone} onChange={v => setField("phone", v)} placeholder="07700 900123" required hint="We'll only use this to reach you if something urgent comes up" />
 
       <button onClick={onNext} disabled={!valid} style={{
         width: "100%", padding: "14px 0", borderRadius: 9999, border: "none",
@@ -296,6 +296,7 @@ function StepProperty({ form, setField, onNext, onBack }) {
 function StepPayment({ form, plan, onBack }) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const [agreed, setAgreed] = useState(false);
 
   const handleCheckout = async () => {
     setLoading(true);
@@ -355,10 +356,25 @@ function StepPayment({ form, plan, onBack }) {
         </div>
       )}
 
-      <button onClick={handleCheckout} disabled={loading} style={{
+      <label style={{ display: "flex", alignItems: "flex-start", gap: 10, marginBottom: 16, fontSize: 13, color: "#475569", cursor: "pointer", lineHeight: 1.5 }}>
+        <input
+          type="checkbox"
+          checked={agreed}
+          onChange={e => setAgreed(e.target.checked)}
+          style={{ marginTop: 2, width: 16, height: 16, accentColor: "#34d399", flexShrink: 0, cursor: "pointer" }}
+        />
+        <span>
+          I agree to Inntact's{" "}
+          <a href="/terms" style={{ color: "#0d9488" }}>Terms</a> and{" "}
+          <a href="/privacy" style={{ color: "#0d9488" }}>Privacy Policy</a>.
+        </span>
+      </label>
+
+      <button onClick={handleCheckout} disabled={loading || !agreed} style={{
         width: "100%", padding: "16px 0", borderRadius: 9999, border: "none",
-        background: "linear-gradient(135deg,#34d399,#22d3ee)", color: "#020617",
-        fontWeight: 700, fontSize: 16, cursor: loading ? "wait" : "pointer",
+        background: agreed ? "linear-gradient(135deg,#34d399,#22d3ee)" : "#e2e8f0",
+        color: agreed ? "#020617" : "#94a3b8",
+        fontWeight: 700, fontSize: 16, cursor: loading ? "wait" : (agreed ? "pointer" : "not-allowed"),
         fontFamily: "inherit", display: "flex", alignItems: "center", justifyContent: "center", gap: 8,
         opacity: loading ? 0.8 : 1, marginBottom: 12,
       }}>
@@ -368,12 +384,6 @@ function StepPayment({ form, plan, onBack }) {
       <div style={{ display: "flex", justifyContent: "center", alignItems: "center", gap: 6, fontSize: 12, color: "#94a3b8" }}>
         <Shield size={12} /> Payments processed securely by Stripe. Inntact never stores card details.
       </div>
-
-      <p style={{ textAlign: "center", fontSize: 12, color: "#94a3b8", marginTop: 10, lineHeight: 1.5 }}>
-        By paying, you agree to our{" "}
-        <a href="/terms" style={{ color: "#0d9488" }}>Terms</a> and{" "}
-        <a href="/privacy" style={{ color: "#0d9488" }}>Privacy Policy</a>.
-      </p>
 
       <style>{`@keyframes spin { to { transform: rotate(360deg); } }`}</style>
     </div>

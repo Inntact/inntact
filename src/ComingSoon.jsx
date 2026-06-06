@@ -258,7 +258,7 @@ export default function ComingSoon() {
         <div className="fade-6" style={{ display: "flex", justifyContent: "center", gap: "2rem", marginTop: "2rem", flexWrap: "wrap" }}>
           {[
             "Catch outages before guests do",
-            "Instant SMS & email alerts",
+            "Instant email alerts",
             "Protect your 5-star reviews",
           ].map((f) => (
             <div key={f} style={{ display: "flex", alignItems: "center", gap: 8, fontSize: 13, color: "#64748b" }}>
