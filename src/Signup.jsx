@@ -369,6 +369,12 @@ function StepPayment({ form, plan, onBack }) {
         <Shield size={12} /> Payments processed securely by Stripe. Inntact never stores card details.
       </div>
 
+      <p style={{ textAlign: "center", fontSize: 12, color: "#94a3b8", marginTop: 10, lineHeight: 1.5 }}>
+        By paying, you agree to our{" "}
+        <a href="/terms" style={{ color: "#0d9488" }}>Terms</a> and{" "}
+        <a href="/privacy" style={{ color: "#0d9488" }}>Privacy Policy</a>.
+      </p>
+
       <style>{`@keyframes spin { to { transform: rotate(360deg); } }`}</style>
     </div>
   );
