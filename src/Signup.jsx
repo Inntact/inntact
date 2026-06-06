@@ -10,6 +10,16 @@ const ANNUAL_MONTHLY_EQUIV = (ANNUAL_PRICE / 12).toFixed(0);
 
 const API_BASE = import.meta.env.VITE_API_BASE || "https://backend.inntact.co.uk";
 
+// Lenient UK postcode check — flags obvious typos without rejecting valid edge cases.
+const UK_POSTCODE_RE = /^[A-Z]{1,2}\d[A-Z\d]?\s*\d[A-Z]{2}$/i;
+
+// Stitch the structured address fields back into one string for the backend.
+const composeAddress = (f) =>
+  [f.address_line1, f.address_line2, f.city, f.postcode]
+    .map((s) => (s || "").trim())
+    .filter(Boolean)
+    .join(", ");
+
 // ── Shared atoms ──────────────────────────────────────────────────────────────
 
 function GradientText({ children }) {
@@ -235,7 +245,8 @@ function StepDetails({ form, setField, onNext, onBack }) {
 
 function StepProperty({ form, setField, onNext, onBack }) {
   const [showWifi, setShowWifi] = useState(false);
-  const valid = form.property_name && form.address && form.wifi_name && form.wifi_password;
+  const valid = form.property_name && form.address_line1 && form.city && form.postcode && form.wifi_name && form.wifi_password;
+  const postcodeLooksOff = form.postcode && !UK_POSTCODE_RE.test(form.postcode.trim());
 
   return (
     <div>
@@ -246,7 +257,15 @@ function StepProperty({ form, setField, onNext, onBack }) {
       <p style={{ color: "#64748b", fontSize: 15, margin: "0 0 24px" }}>Tell us about the property we'll be monitoring.</p>
 
       <Input label="Property name" value={form.property_name} onChange={v => setField("property_name", v)} placeholder="Sea View Cottage" required hint="This appears on your guest WiFi page" />
-      <Input label="Full postal address" value={form.address} onChange={v => setField("address", v)} placeholder="1 Harbour Lane, St Ives, TR26 1AA" required hint="We'll post your monitoring device here" />
+      <Input label="Address line 1" value={form.address_line1} onChange={v => setField("address_line1", v)} placeholder="1 Harbour Lane" required />
+      <Input label="Address line 2" value={form.address_line2} onChange={v => setField("address_line2", v)} placeholder="Carbis Bay (optional)" />
+      <Input label="Town / city" value={form.city} onChange={v => setField("city", v)} placeholder="St Ives" required />
+      <Input label="Postcode" value={form.postcode} onChange={v => setField("postcode", v.toUpperCase())} placeholder="TR26 1AA" required hint="We'll post your monitoring device here" />
+      {postcodeLooksOff && (
+        <p style={{ margin: "-8px 0 16px", fontSize: 12, color: "#d97706" }}>
+          That doesn't look like a UK postcode — please double-check.
+        </p>
+      )}
 
       <div style={{ background: "#f8fafc", border: "1px solid #e2e8f0", borderRadius: 10, padding: 16, marginBottom: 16 }}>
         <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", cursor: "pointer" }} onClick={() => setShowWifi(v => !v)}>
@@ -305,7 +324,7 @@ function StepPayment({ form, plan, onBack }) {
       const res = await fetch(`${API_BASE}/api/create-checkout-session`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...form, plan }),
+        body: JSON.stringify({ ...form, plan, address: composeAddress(form) }),
       });
       const data = await res.json();
       if (data.url) {
@@ -335,7 +354,7 @@ function StepPayment({ form, plan, onBack }) {
       {/* Summary */}
       {[
         { title: "Your details", rows: [["Name", form.name], ["Email", form.email], ["Phone", form.phone]] },
-        { title: "Property", rows: [["Name", form.property_name], ["Address", form.address], ["WiFi network", form.wifi_name]] },
+        { title: "Property", rows: [["Name", form.property_name], ["Address", composeAddress(form)], ["WiFi network", form.wifi_name]] },
         { title: "Plan", rows: [["Billing", plan === "annual" ? "Annual" : "Monthly"], ["Amount", priceLabel]] },
       ].map(({ title, rows }) => (
         <div key={title} style={{ background: "#f8fafc", border: "1px solid #e2e8f0", borderRadius: 10, padding: "16px 20px", marginBottom: 12 }}>
@@ -397,7 +416,7 @@ export default function Signup() {
   const [plan, setPlan]   = useState("monthly");
   const [form, setForm]   = useState({
     name: "", email: "", phone: "",
-    property_name: "", address: "", wifi_name: "", wifi_password: "",
+    property_name: "", address_line1: "", address_line2: "", city: "", postcode: "", wifi_name: "", wifi_password: "",
   });
 
   const setField = (key, val) => setForm(f => ({ ...f, [key]: val }));
