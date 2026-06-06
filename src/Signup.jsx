@@ -256,11 +256,11 @@ function StepProperty({ form, setField, onNext, onBack }) {
       <h2 style={{ fontSize: 24, fontWeight: 700, color: "#0f172a", margin: "0 0 6px" }}>Your property</h2>
       <p style={{ color: "#64748b", fontSize: 15, margin: "0 0 24px" }}>Tell us about the property we'll be monitoring.</p>
 
-      <Input label="Property name" value={form.property_name} onChange={v => setField("property_name", v)} placeholder="e.g. Sea View Cottage" required hint="This appears on your guest WiFi page" />
-      <Input label="Address line 1" value={form.address_line1} onChange={v => setField("address_line1", v)} placeholder="e.g. 1 Harbour Lane" required />
-      <Input label="Address line 2 (optional)" value={form.address_line2} onChange={v => setField("address_line2", v)} placeholder="e.g. Carbis Bay" />
-      <Input label="Town / city" value={form.city} onChange={v => setField("city", v)} placeholder="e.g. St Ives" required />
-      <Input label="Postcode" value={form.postcode} onChange={v => setField("postcode", v.toUpperCase())} placeholder="e.g. TR26 1AA" required hint="We'll post your monitoring device here" />
+      <Input label="Property name" value={form.property_name} onChange={v => setField("property_name", v)} required hint="This appears on your guest WiFi page" />
+      <Input label="Address line 1" value={form.address_line1} onChange={v => setField("address_line1", v)} required />
+      <Input label="Address line 2 (optional)" value={form.address_line2} onChange={v => setField("address_line2", v)} />
+      <Input label="Town / city" value={form.city} onChange={v => setField("city", v)} required />
+      <Input label="Postcode" value={form.postcode} onChange={v => setField("postcode", v.toUpperCase())} required hint="We'll post your monitoring device here" />
       {postcodeLooksOff && (
         <p style={{ margin: "-8px 0 16px", fontSize: 12, color: "#d97706" }}>
           That doesn't look like a UK postcode — please double-check.
