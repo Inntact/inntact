@@ -316,6 +316,7 @@ export default function InntactHomepage() {
             <a href="#solution" className="transition hover:text-white">Dashboard</a>
             <a href="#pricing" className="transition hover:text-white">Pricing</a>
             <a href="#faq" className="transition hover:text-white">FAQ</a>
+            <Link to="/contact" className="transition hover:text-white">Contact</Link>
           </nav>
           <div className="hidden items-center gap-3 md:flex">
             <a href="https://dashboard.inntact.co.uk/" className="text-sm text-slate-300 transition hover:text-white">Sign in</a>
@@ -332,6 +333,7 @@ export default function InntactHomepage() {
               <a href="#solution" onClick={() => setMenuOpen(false)}>Dashboard</a>
               <a href="#pricing" onClick={() => setMenuOpen(false)}>Pricing</a>
               <a href="#faq" onClick={() => setMenuOpen(false)}>FAQ</a>
+              <Link to="/contact" onClick={() => setMenuOpen(false)}>Contact</Link>
               <div className="pt-2"><GlowButton primary href="/signup" className="w-full">Get set up</GlowButton></div>
             </div>
           </div>
