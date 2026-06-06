@@ -19,7 +19,7 @@ export default function Success() {
           <div style={{ fontSize: 13, fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.08em", color: "#94a3b8", marginBottom: 20 }}>What happens next</div>
           {[
             { icon: <Mail size={16} color="#34d399" />, title: "Check your email", body: "Your welcome email is on its way with your dashboard login and guest WiFi QR code." },
-            { icon: <Package size={16} color="#34d399" />, title: "Your Pi is being prepared", body: "We'll configure and post your Raspberry Pi within 3–5 working days." },
+            { icon: <Package size={16} color="#34d399" />, title: "Your device is being prepared", body: "We'll configure and post your monitoring device within 3–5 working days." },
             { icon: <Wifi size={16} color="#34d399" />, title: "Plug in & go", body: "When it arrives, simply plug it into your router. Monitoring starts automatically." },
             { icon: <LayoutDashboard size={16} color="#34d399" />, title: "Watch your dashboard", body: "Log in to dashboard.inntact.co.uk to see live stats, alerts and speed history." },
           ].map(({ icon, title, body }, i) => (

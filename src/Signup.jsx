@@ -118,8 +118,8 @@ function StepPlan({ plan, setPlan, onNext }) {
     "Owner dashboard",
     "Guest WiFi status page & QR code",
     "Smart sensor support",
-    "Pre-configured Raspberry Pi included",
-    "Self-install in under 5 minutes",
+    "Pre-configured monitoring device included",
+    "Self-install in around 10 minutes",
     "Hardware remains Inntact property",
   ];
 
@@ -144,7 +144,7 @@ function StepPlan({ plan, setPlan, onNext }) {
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 20 }}>
           <div>
             <div style={{ fontSize: 13, fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.08em", color: "#64748b", marginBottom: 4 }}>
-              Professional
+              {plan === "annual" ? "Annual plan" : "Monthly plan"}
             </div>
             <div style={{ display: "flex", alignItems: "baseline", gap: 4 }}>
               <span style={{ fontSize: 42, fontWeight: 700, color: "#0f172a" }}>
@@ -159,7 +159,7 @@ function StepPlan({ plan, setPlan, onNext }) {
             )}
           </div>
           <div style={{ background: "linear-gradient(135deg,rgba(52,211,153,0.1),rgba(34,211,238,0.1))", border: "1px solid rgba(52,211,153,0.2)", borderRadius: 9999, padding: "4px 12px", fontSize: 12, color: "#0d9488", fontWeight: 600 }}>
-            Most popular
+            Everything included
           </div>
         </div>
 
@@ -246,7 +246,7 @@ function StepProperty({ form, setField, onNext, onBack }) {
       <p style={{ color: "#64748b", fontSize: 15, margin: "0 0 24px" }}>Tell us about the property we'll be monitoring.</p>
 
       <Input label="Property name" value={form.property_name} onChange={v => setField("property_name", v)} placeholder="Sea View Cottage" required hint="This appears on your guest WiFi page" />
-      <Input label="Full postal address" value={form.address} onChange={v => setField("address", v)} placeholder="1 Harbour Lane, St Ives, TR26 1AA" required hint="We'll post your Raspberry Pi here" />
+      <Input label="Full postal address" value={form.address} onChange={v => setField("address", v)} placeholder="1 Harbour Lane, St Ives, TR26 1AA" required hint="We'll post your monitoring device here" />
 
       <div style={{ background: "#f8fafc", border: "1px solid #e2e8f0", borderRadius: 10, padding: 16, marginBottom: 16 }}>
         <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", cursor: "pointer" }} onClick={() => setShowWifi(v => !v)}>
@@ -335,7 +335,7 @@ function StepPayment({ form, plan, onBack }) {
       {[
         { title: "Your details", rows: [["Name", form.name], ["Email", form.email], ["Phone", form.phone]] },
         { title: "Property", rows: [["Name", form.property_name], ["Address", form.address], ["WiFi network", form.wifi_name]] },
-        { title: "Plan", rows: [["Plan", "Professional"], ["Billing", plan === "annual" ? "Annual" : "Monthly"], ["Amount", priceLabel]] },
+        { title: "Plan", rows: [["Billing", plan === "annual" ? "Annual" : "Monthly"], ["Amount", priceLabel]] },
       ].map(({ title, rows }) => (
         <div key={title} style={{ background: "#f8fafc", border: "1px solid #e2e8f0", borderRadius: 10, padding: "16px 20px", marginBottom: 12 }}>
           <div style={{ fontSize: 12, fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.08em", color: "#94a3b8", marginBottom: 10 }}>{title}</div>
