@@ -351,7 +351,7 @@ export default function InntactHomepage() {
             Keep guests online — even when broadband fails
           </h1>
           <p className="mx-auto mt-6 max-w-2xl text-balance text-lg text-slate-400 sm:text-xl">
-            Inntact monitors your holiday let's WiFi 24/7. If the router drops, it restarts automatically and lets you know. If broadband fails completely, built-in 4G backup takes over so guests stay connected while you contact your provider. Sensors also catch leaks, damp and freezing temperatures early — before small problems turn into expensive ones.
+            Inntact monitors your holiday let's WiFi 24/7. If the router drops, it restarts automatically and lets you know. If broadband fails completely, built-in 4G backup takes over so guests stay connected while you contact your provider. Sensors also help detect leaks and low temperatures early — before small problems turn into expensive ones.
           </p>
           <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
             <GlowButton primary href="/signup">Get set up</GlowButton>
@@ -492,8 +492,8 @@ export default function InntactHomepage() {
             <div className="relative grid gap-10 lg:grid-cols-2 lg:items-center">
               <div>
                 <SectionEyebrow>Included in your kit</SectionEyebrow>
-                <h2 className="text-balance text-4xl font-semibold tracking-tight sm:text-5xl">Smart sensors for <GradientText>leaks, damp and freezing</GradientText></h2>
-                <p className="mt-4 max-w-xl text-slate-400">Alongside the WiFi, your sensors keep an eye on temperature, humidity and water leaks — the things that quietly cause damage in an empty property. They arrive already paired, so you just place them where they're needed. Catch a leak or a freeze early, before it becomes an expensive repair.</p>
+                <h2 className="text-balance text-4xl font-semibold tracking-tight sm:text-5xl">Smart sensors for <GradientText>leaks and low temperatures</GradientText></h2>
+                <p className="mt-4 max-w-xl text-slate-400">Alongside the WiFi, your sensors keep an eye on temperature, humidity and water leaks — the things that quietly cause damage in an empty property. They arrive already paired, so you just place them where they're needed. Catch a leak or a drop in temperature early, before it becomes an expensive repair.</p>
                 <div className="mt-8 flex flex-wrap gap-3">
                   <GlowButton href="#features">See how it works</GlowButton>
                 </div>
